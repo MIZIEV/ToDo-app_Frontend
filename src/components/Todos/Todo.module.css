@@ -14,3 +14,9 @@
     width: 100%;
     text-align: center;
 }
+
+.todoIcon {
+    font-size: 1.8rem;
+    margin-right: 10px;
+    color: teal;
+}

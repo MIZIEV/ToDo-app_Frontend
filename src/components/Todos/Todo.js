@@ -1,3 +1,4 @@
+import { RiTodoFill } from 'react-icons/ri'
 import styles from './Todo.module.css';
 
 function Todo(props) {
@@ -5,6 +6,7 @@ function Todo(props) {
 
     return (
         <div className={styles.todo} onDoubleClick={() => { deleteTodo(index) }}>
+            <RiTodoFill className={styles.todoIcon} />
             <div classsName={styles.todoText}>{todo}</div>
         </div>
     )
