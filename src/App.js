@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import TodoForm from './components/Todos/TodoForm';
 import TodoList from './components/Todos/TodoList';
+import TodosActions from './components/Todos/TodosAcions';
 
 import './App.css';
 
@@ -37,6 +38,7 @@ function App() {
     <div className="App">
       <h1>Todo app</h1>
       <TodoForm addTodo={addTodoHandler} />
+      <TodosActions />
       <TodoList todos={todos} deleteTodo={deleteTodoHandler} toggleTodo={toggleTodoHandler} />
 
     </div>
