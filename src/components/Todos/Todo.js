@@ -7,13 +7,13 @@ function Todo(props) {
     const { todo, deleteTodo, toggleTodo } = props
 
     return (
-        <div className={`${styles.todo} ${todo.isCompleted ? styles.completedTodo : ''}`} >
+        <div className={`${styles.todo} ${todo.completed ? styles.completedTodo : ''}`} >
 
             <RiTodoFill className={styles.todoIcon} />
             <div className={styles.todoText}>{todo.text}</div>
 
-            <RiDeleteBin2Line className={styles.deleteIcon} onClick={() => { deleteTodo(todo.id) }} />
-            <FaCheck className={styles.checkIcon} onClick={() => { toggleTodo(todo.id) }} />
+            <RiDeleteBin2Line className={styles.deleteIcon} onClick={() => { deleteTodo(todo.todoUniqueKey) }} />
+            <FaCheck className={styles.checkIcon} onClick={() => { toggleTodo(todo.todoUniqueKey) }} />
 
         </div>
     )
