@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import TodoForm from './components/Todos/TodoForm';
@@ -6,6 +6,9 @@ import TodoList from './components/Todos/TodoList';
 import TodosActions from './components/Todos/TodosAcions';
 
 import './App.css';
+
+const URL_PUT = "http://localhost:8080/api/add";
+const URL_GET = "http://localhost:8080/api/todos"
 
 function App() {
 
@@ -18,8 +21,26 @@ function App() {
       isCompleted: false,
       id: uuidv4()
     }
+
     setTodos([...todos, newTodo]);
+
+    /*fetch(URL_PUT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newTodo)
+
+    }).then(() => { console.log(URL) })
+    console.log(JSON.stringify(newTodo))*/
   }
+
+
+  useEffect(() => {
+    fetch(URL_GET)
+      .then(response => response.json())
+      .then(result => { setTodos(result) })
+  }, [])
+
+
 
   const deleteTodoHandler = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id))
