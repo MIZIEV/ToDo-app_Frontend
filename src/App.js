@@ -11,6 +11,7 @@ const URL_PUT = "http://localhost:8080/api/add";
 const URL_GET = "http://localhost:8080/api/todos";
 const URL_UPDATE = "http://localhost:8080/api/todo/";
 const URL_DELETE_ALL = "http://localhost:8080/api/todos/delete";
+const URL_DELETE_COMPLETED_TODOS = "http://localhost:8080/api/todos/delete_completed";
 
 function App() {
 
@@ -85,6 +86,14 @@ function App() {
   }
 
   const deleteCompletedTodosHandler = () => {
+
+    fetch(URL_DELETE_COMPLETED_TODOS, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(todos.filter((todo) => todo.completed))
+    }).then(() => { console.log(JSON.stringify(todos.filter((todo) => todo.completed))) })
+
+
     setTodos(todos.filter((todo) => !todo.completed))
   }
 
