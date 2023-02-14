@@ -31,9 +31,7 @@ function App() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newTodo)
-
-    }).then(() => { console.log(URL) })
-    console.log(JSON.stringify(newTodo))
+    })
   }
 
   useEffect(() => {
@@ -47,32 +45,29 @@ function App() {
 
     fetch(URL_UPDATE + todoUniqueKey, {
       method: "DELETE",
-    }).then(() => { console.log(URL_PUT + todoUniqueKey) })
+    })
 
   }
 
   const toggleTodoHandler = (todoUniqueKey) => {
-    console.log("start toggle method")
 
     setTodos(todos.map((todo) => {
       return todo.todoUniqueKey === todoUniqueKey ? { ...todo, completed: !todo.completed } : { ...todo }
     }))
-    console.log("all todos - " + todos)
 
     todos.map((todo) => {
-      console.log("started query")
       if (todo.todoUniqueKey === todoUniqueKey) {
 
         const updatedTodo = {
           ...todo,
           completed: !todo.completed
         }
+
         fetch(URL_UPDATE + todoUniqueKey, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(updatedTodo)
         })
-        console.log(JSON.stringify(updatedTodo))
       }
     })
   }
@@ -81,8 +76,8 @@ function App() {
 
     fetch(URL_DELETE_ALL, {
       method: "DELETE",
-    }).then(() => { console.log(URL_DELETE_ALL) })
-    setTodos([]);
+    })
+    setTodos([])
   }
 
   const deleteCompletedTodosHandler = () => {
@@ -91,8 +86,7 @@ function App() {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(todos.filter((todo) => todo.completed))
-    }).then(() => { console.log(JSON.stringify(todos.filter((todo) => todo.completed))) })
-
+    })
 
     setTodos(todos.filter((todo) => !todo.completed))
   }
