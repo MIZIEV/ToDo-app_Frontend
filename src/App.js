@@ -38,11 +38,11 @@ function App() {
     })
   }
 
-  useEffect(() => {
+  /*useEffect(() => {
     fetch(URL_GET)
       .then(response => response.json())
       .then(result => { setTodos(result) })
-  }, [])
+  }, [])*/
 
   const deleteTodoHandler = (todoUniqueKey) => {
     setTodos(todos.filter((todo) => todo.todoUniqueKey !== todoUniqueKey))

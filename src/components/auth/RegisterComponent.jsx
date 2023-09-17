@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { registerApiCall } from "../../services/AuthService";
+
 function RegisterComponent() {
 
     const [name, setName] = useState('');
@@ -7,11 +9,14 @@ function RegisterComponent() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    function handleRegistrationForm(e) {
+        e.preventDefault();
 
-
-
-
-
+        const register = { name, username, email, password };
+        registerApiCall(register).then((responce) => {
+            console.log(responce.data);
+        }).catch(error => console.error(error));
+    }
 
     return (
         <div>
@@ -65,7 +70,7 @@ function RegisterComponent() {
                 </div>
 
                 <div>
-                    <button type="button">Submit</button>
+                    <button type="button" onClick={(e) => handleRegistrationForm(e)}>Submit</button>
                 </div>
 
             </form>
