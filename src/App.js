@@ -5,7 +5,11 @@ import TodoForm from './components/Todos/TodoForm';
 import TodoList from './components/Todos/TodoList';
 import TodosActions from './components/Todos/TodosAcions';
 
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+
 import './App.css';
+import LoginComponent from './components/auth/LoginComponent';
+import RegisterComponent from './components/auth/RegisterComponent';
 
 const URL_PUT = "http://localhost:8080/api/add";
 const URL_GET = "http://localhost:8080/api/todos";
@@ -93,22 +97,42 @@ function App() {
 
   const completedTodosCount = todos.filter((todo) => todo.completed).length
 
+
+
+
   return (
-    <div className="App">
-      <h1>Todo app</h1>
-      <TodoForm addTodo={addTodoHandler} />
 
-      {todos.length > 0 && <TodosActions
-        completedTodosExists={!!completedTodosCount}
-        resetTodos={resetTodosHandler}
-        deleteCompletedTodos={deleteCompletedTodosHandler} />}
+    <div className='App'>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/login' element={<LoginComponent />} />
+          <Route path="/register" element={<RegisterComponent />} />
+        </Routes>
+      </BrowserRouter>
 
-      <TodoList todos={todos} deleteTodo={deleteTodoHandler} toggleTodo={toggleTodoHandler} />
-
-      {completedTodosCount > 0 && (
-        <h3>{`You have completed ${completedTodosCount} ${completedTodosCount > 1 ? "todos" : "todo"}`}</h3>
-      )}
     </div>
+
+    /*
+        { old logic, I'll keep it for now 
+    
+          <div className="App">
+          <h1>Todo app</h1>
+          <TodoForm addTodo={addTodoHandler} />
+    
+          {todos.length > 0 && <TodosActions
+            completedTodosExists={!!completedTodosCount}
+            resetTodos={resetTodosHandler}
+            deleteCompletedTodos={deleteCompletedTodosHandler} />}
+    
+          <TodoList todos={todos} deleteTodo={deleteTodoHandler} toggleTodo={toggleTodoHandler} />
+    
+          {completedTodosCount > 0 && (
+            <h3>{`You have completed ${completedTodosCount} ${completedTodosCount > 1 ? "todos" : "todo"}`}</h3>
+          )}
+        </div>}
+    */
+
+
   );
 }
 
