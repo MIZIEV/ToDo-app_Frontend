@@ -10,6 +10,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import LoginComponent from './components/auth/LoginComponent';
 import RegisterComponent from './components/auth/RegisterComponent';
+import HeaderComponent from './components/UI/HeaderComponent';
+import FooterComponent from './components/UI/FooterComponent';
 
 const URL_PUT = "http://localhost:8080/api/add";
 const URL_GET = "http://localhost:8080/api/todos";
@@ -104,10 +106,15 @@ function App() {
 
     <div className='App'>
       <BrowserRouter>
+
+        <HeaderComponent />
+
         <Routes>
           <Route path='/login' element={<LoginComponent />} />
           <Route path="/register" element={<RegisterComponent />} />
         </Routes>
+
+        <FooterComponent />
       </BrowserRouter>
 
     </div>
