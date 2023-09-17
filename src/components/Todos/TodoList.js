@@ -1,5 +1,5 @@
 import Todo from "./Todo";
-import styles from './TodoList.module.css'
+import styles from '../../styles/TodoList.module.css'
 
 function TodoList(props) {
 
