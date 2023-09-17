@@ -54,7 +54,6 @@ function RegisterComponent() {
                 </div>
 
                 <div>
-
                     <label>Password</label>
                     <input
                         type="password"
@@ -63,6 +62,10 @@ function RegisterComponent() {
                         value={password}
                         onChange={(e) => { setPassword(e.target.value) }}
                     ></input>
+                </div>
+
+                <div>
+                    <button type="button">Submit</button>
                 </div>
 
             </form>
