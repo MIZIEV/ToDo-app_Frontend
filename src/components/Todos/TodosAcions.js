@@ -1,5 +1,5 @@
 import { RiDeleteBin2Line, RiRefreshLine } from 'react-icons/ri';
-import styles from './TodosActions.module.css';
+import styles from '../../styles/TodosActions.module.css';
 
 import Button from "../UI/Button";
 

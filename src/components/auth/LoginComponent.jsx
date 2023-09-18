@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { loginApiCall, saveLoggedInUser, storeToken } from "../../services/AuthService";
+import { useNavigate } from "react-router-dom";
 
 function LoginComponent() {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+    const navigator = useNavigate();
 
     async function handleLoginForm(e) {
         e.preventDefault();
@@ -21,6 +24,8 @@ function LoginComponent() {
                 storeToken(token);
 
                 saveLoggedInUser(username, role);
+
+                navigator("/todos")
                 window.location.reload(false);
             }).catch(error => console.error(error));
 
