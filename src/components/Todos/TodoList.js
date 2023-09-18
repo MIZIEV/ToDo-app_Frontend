@@ -1,4 +1,4 @@
-import Todo from "./Todo";
+import TodoComponent from "./TodoComponent";
 import styles from '../../styles/TodoList.module.css'
 
 function TodoList(props) {
@@ -7,7 +7,7 @@ function TodoList(props) {
     return (
         <div className={styles.todoListContainer}>
             {todos.length === 0 && <h3>Todo list is empty.</h3>}
-            {todos.map((todo) => <Todo key={todo.todoUniqueKey} todo={todo} deleteTodo={deleteTodo} toggleTodo={toggleTodo} />)}
+            {todos.map((todo) => <TodoComponent key={todo.todoUniqueKey} todo={todo} deleteTodo={deleteTodo} toggleTodo={toggleTodo} />)}
         </div>
     )
 }
