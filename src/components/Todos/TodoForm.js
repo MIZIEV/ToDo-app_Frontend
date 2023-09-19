@@ -1,12 +1,10 @@
-import { useState } from 'react';
-import styles from '../../styles/TodoForm.module.css';
-import Button from '../UI/Button';
-import { saveTodo } from '../../services/TodoService';
 import React from "react";
+import { useState } from 'react';
+import { saveTodo } from '../../services/TodoService';
+import styles from '../../styles/TodoForm.module.css';
 
 function TodoForm() {
 
-    //const { addTodo } = props;
     const [text, setText] = useState("");
     const [username, setUsername] = useState("");
     const [todoUniqueKey, setTodoUniqueKey] = useState("");
@@ -15,14 +13,11 @@ function TodoForm() {
         event.preventDefault();
 
 
-        //const username = sessionStorage.getItem("authenticatedUser");
+        const username = sessionStorage.getItem("authenticatedUser");
         const todo = { text, todoUniqueKey, username };
         setUsername(username);
-        //addTodo(text);
         setText('');
-
-        console.log(text);
-        console.log(username);
+        //todo change unique key logic!!!!!!!!!!!!!!!!!! 
         setTodoUniqueKey(text);
 
         saveTodo(todo).then((responce) => {
@@ -36,7 +31,7 @@ function TodoForm() {
                 <input placeholder="Enter new todo" value={text} onChange={(e) => setText(e.target.value)} />
 
                 <div>
-                    <Button onClick={(e) => saveNewTodo(e)}>Submit</Button>
+                    <button type="button" onClick={(e) => saveNewTodo(e)}>Submit</button>
                 </div>
             </form>
         </div>
