@@ -8,6 +8,7 @@ import RegisterComponent from './components/auth/RegisterComponent';
 import HeaderComponent from './components/UI/HeaderComponent';
 import FooterComponent from './components/UI/FooterComponent';
 import { isUserLoggedIn } from './services/AuthService';
+import TodoForm from './components/Todos/TodoForm';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
 
           <Route path='/todos' element={
             <AuthenticateRoute>
+              <TodoForm />
               <TodoList />
             </AuthenticateRoute>
           } />
