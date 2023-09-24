@@ -2,26 +2,27 @@ import React from "react";
 import { useState } from 'react';
 import { saveTodo } from '../../services/TodoService';
 import styles from '../../styles/TodoForm.module.css';
+import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
 
 function TodoForm() {
 
     const [text, setText] = useState("");
     const [username, setUsername] = useState("");
-    const [todoUniqueKey, setTodoUniqueKey] = useState("");
+    const navigator = useNavigate();
 
     function saveNewTodo(event) {
         event.preventDefault();
 
-
         const username = sessionStorage.getItem("authenticatedUser");
-        const todo = { text, todoUniqueKey, username };
+        const todo = { text, todoUniqueKey: uuidv4(), username };
+
         setUsername(username);
         setText('');
-        //todo change unique key logic!!!!!!!!!!!!!!!!!! 
-        setTodoUniqueKey(text);
 
         saveTodo(todo).then((responce) => {
             console.log(responce.data)
+            navigator("/todos")
         }).catch(error => { console.error(error) });
     }
 

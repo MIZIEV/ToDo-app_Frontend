@@ -1,4 +1,5 @@
 import TodoList from './components/Todos/TodoList';
+import TodoForm from './components/Todos/TodoForm';
 
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
@@ -8,7 +9,7 @@ import RegisterComponent from './components/auth/RegisterComponent';
 import HeaderComponent from './components/UI/HeaderComponent';
 import FooterComponent from './components/UI/FooterComponent';
 import { isUserLoggedIn } from './services/AuthService';
-import TodoForm from './components/Todos/TodoForm';
+import TodoDetails from './components/Todos/TodoDetails';
 
 function App() {
 
@@ -35,8 +36,28 @@ function App() {
 
           <Route path='/todos' element={
             <AuthenticateRoute>
-              <TodoForm />
               <TodoList />
+            </AuthenticateRoute>
+          } />
+
+          <Route path='/add-todo' element={
+            <AuthenticateRoute>
+              <TodoForm />
+            </AuthenticateRoute>
+          } />
+
+
+
+          <Route path='/todo-details/:todoUniqueKey' element={
+            <AuthenticateRoute>
+              <TodoDetails />
+            </AuthenticateRoute>
+          } />
+
+
+          <Route path='/update-todo/:todoUniqueKey' element={
+            <AuthenticateRoute>
+              <TodoForm />
             </AuthenticateRoute>
           } />
 
