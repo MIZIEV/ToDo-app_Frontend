@@ -9,6 +9,7 @@ import RegisterComponent from './components/auth/RegisterComponent';
 import HeaderComponent from './components/UI/HeaderComponent';
 import FooterComponent from './components/UI/FooterComponent';
 import { isUserLoggedIn } from './services/AuthService';
+import TodoDetails from './components/Todos/TodoDetails';
 
 function App() {
 
@@ -40,6 +41,21 @@ function App() {
           } />
 
           <Route path='/add-todo' element={
+            <AuthenticateRoute>
+              <TodoForm />
+            </AuthenticateRoute>
+          } />
+
+
+
+          <Route path='/todo-details/:todoUniqueKey' element={
+            <AuthenticateRoute>
+              <TodoDetails />
+            </AuthenticateRoute>
+          } />
+
+
+          <Route path='/update-todo/:todoUniqueKey' element={
             <AuthenticateRoute>
               <TodoForm />
             </AuthenticateRoute>

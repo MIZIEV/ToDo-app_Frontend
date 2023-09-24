@@ -11,8 +11,6 @@ function TodoForm() {
     const [username, setUsername] = useState("");
     const navigator = useNavigate();
 
-    const uniqueKey = uuidv4();
-
     function saveNewTodo(event) {
         event.preventDefault();
 
