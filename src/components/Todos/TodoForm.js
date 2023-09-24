@@ -2,12 +2,14 @@ import React from "react";
 import { useState } from 'react';
 import { saveTodo } from '../../services/TodoService';
 import styles from '../../styles/TodoForm.module.css';
+import { useNavigate } from "react-router-dom";
 
 function TodoForm() {
 
     const [text, setText] = useState("");
     const [username, setUsername] = useState("");
     const [todoUniqueKey, setTodoUniqueKey] = useState("");
+    const navigator = useNavigate();
 
     function saveNewTodo(event) {
         event.preventDefault();
@@ -22,6 +24,7 @@ function TodoForm() {
 
         saveTodo(todo).then((responce) => {
             console.log(responce.data)
+            navigator("/todos")
         }).catch(error => { console.error(error) });
     }
 
