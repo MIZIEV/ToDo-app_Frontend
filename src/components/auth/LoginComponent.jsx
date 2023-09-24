@@ -14,8 +14,7 @@ function LoginComponent() {
         const loginObj = [username, password];
         console.log(loginObj);
 
-        await loginApiCall(username, password).
-            then((responce) => {
+        await loginApiCall(username, password).then((responce) => {
                 console.log(responce.data)
 
                 const token = "Bearer " + responce.data.accessToken;
