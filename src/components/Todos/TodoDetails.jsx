@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { getTodoByKey } from "../../services/TodoService";
+import { deleteTodo, getTodoByKey } from "../../services/TodoService";
 
 function TodoDetails() {
 
@@ -13,7 +13,7 @@ function TodoDetails() {
     useEffect(() => {
         getTodoByKey(todoUniqueKey).then((responce) => {
 
-            console.log(responce)
+            console.log(responce.data)
             setText(responce.data.text);
             setCompleted(responce.data.completed)
 
@@ -23,6 +23,14 @@ function TodoDetails() {
 
     function editHandler(todoUniqueKey) {
         navigator(`/update-todo/${todoUniqueKey}`)
+    }
+
+    function deleteHandler(todoUniqueKey) {
+        deleteTodo(todoUniqueKey).then((responce) => {
+            console.log(responce.data);
+            navigator("/todos")
+        }).catch(error => console.error(error));
+
     }
 
     return (
@@ -35,10 +43,11 @@ function TodoDetails() {
             </div>
             <div>
                 <label >is completed: </label>
-                <span>{" "+ completed}</span>
+                <span>{" " + completed}</span>
             </div>
 
             <button onClick={() => editHandler(todoUniqueKey)}>Edit</button>
+            <button onClick={() => deleteHandler(todoUniqueKey)}>Delete</button>
 
         </div>
     )
