@@ -17,4 +17,4 @@ export const getTodoByKey = (todoUniqueKey) => axios.get(BASE_REST_API_URL + "/t
 
 export const saveTodo = (todo) => axios.post(BASE_REST_API_URL + "/add", todo);
 
-export const updateTodod = (todo, todoUniqueKey) => axios.put(BASE_REST_API_URL + "/" + todoUniqueKey, todo);
+export const updateTodod = (todoUniqueKey, todo) => axios.put(BASE_REST_API_URL + "/todo/" + todoUniqueKey, todo);
