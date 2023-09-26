@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { loginApiCall, saveLoggedInUser, storeToken } from "../../services/AuthService";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function LoginComponent() {
 
@@ -59,6 +59,10 @@ function LoginComponent() {
                         value={password}
                         onChange={(e) => { setPassword(e.target.value) }}
                     ></input>
+                </div>
+
+                <div>
+                    <h3>If you haven't account, you can <NavLink to="/register">Register now</NavLink></h3>
                 </div>
 
                 <div>
