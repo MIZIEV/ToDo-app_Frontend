@@ -34,7 +34,7 @@ function App() {
           <Route path='/' element={<LoginComponent />} />
 
 
-          <Route path='/todos' element={
+          <Route path='/todos/:username' element={
             <AuthenticateRoute>
               <TodoList />
             </AuthenticateRoute>

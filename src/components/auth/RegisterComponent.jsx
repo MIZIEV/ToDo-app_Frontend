@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { registerApiCall } from "../../services/AuthService";
+import { NavLink } from "react-router-dom";
 
 function RegisterComponent() {
 
@@ -68,6 +69,7 @@ function RegisterComponent() {
                         onChange={(e) => { setPassword(e.target.value) }}
                     ></input>
                 </div>
+                <div>If you registered, you can <NavLink to="/login">login</NavLink></div>
 
                 <div>
                     <button type="button" onClick={(e) => handleRegistrationForm(e)}>Submit</button>

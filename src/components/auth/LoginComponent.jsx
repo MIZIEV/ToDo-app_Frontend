@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { loginApiCall, saveLoggedInUser, storeToken } from "../../services/AuthService";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function LoginComponent() {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
 
     const navigator = useNavigate();
 
@@ -15,18 +16,18 @@ function LoginComponent() {
         console.log(loginObj);
 
         await loginApiCall(username, password).then((responce) => {
-                console.log(responce.data)
+            console.log(responce.data)
 
-                const token = "Bearer " + responce.data.accessToken;
-                const role = responce.data.role;
+            const token = "Bearer " + responce.data.accessToken;
+            const role = responce.data.role;
 
-                storeToken(token);
+            storeToken(token);
 
-                saveLoggedInUser(username, role);
+            saveLoggedInUser(username, role);
 
-                navigator("/todos")
-                window.location.reload(false);
-            }).catch(error => console.error(error));
+            navigator(`/todos/${username}`)
+            window.location.reload(false);
+        }).catch(error => console.error(error));
 
     }
 
@@ -58,6 +59,10 @@ function LoginComponent() {
                         value={password}
                         onChange={(e) => { setPassword(e.target.value) }}
                     ></input>
+                </div>
+
+                <div>
+                    <h3>If you haven't account, you can <NavLink to="/register">Register now</NavLink></h3>
                 </div>
 
                 <div>
