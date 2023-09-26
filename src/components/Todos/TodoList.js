@@ -14,6 +14,7 @@ function TodoList() {
 
 
     function listTodos() {
+        console.log("get all todo func")
         getAllTodos().then((responce) => {
             console.log(responce.data);
             setTodos(responce.data);
