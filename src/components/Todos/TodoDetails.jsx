@@ -7,6 +7,7 @@ function TodoDetails() {
 
     const { todoUniqueKey } = useParams();
     const navigator = useNavigate();
+    const username = sessionStorage.getItem("authenticatedUser");
     const [text, setText] = useState("");
     const [completed, setCompleted] = useState(false);
 
@@ -28,7 +29,7 @@ function TodoDetails() {
     function deleteHandler(todoUniqueKey) {
         deleteTodo(todoUniqueKey).then((responce) => {
             console.log(responce.data);
-            navigator("/todos")
+            navigator(`/todos/${username}`)
         }).catch(error => console.error(error));
 
     }

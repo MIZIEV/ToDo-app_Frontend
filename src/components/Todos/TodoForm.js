@@ -27,12 +27,12 @@ function TodoForm() {
                 console.log("update func")
                 console.log(todo)
                 console.log(responce.data);
-                navigator("/todos")
+                navigator(`/todos/${username}`)
             }).catch(error => console.error(error));
         } else {
             saveTodo(todo).then((responce) => {
                 console.log(responce.data)
-                navigator("/todos")
+                navigator(`/todos/${username}`)
             }).catch(error => { console.error(error) });
         }
     }
@@ -50,7 +50,7 @@ function TodoForm() {
         if (todoUniqueKey) {
             return <h1>Update todo</h1>
         } else {
-            return <ha>Save new todo</ha>
+            return <h1>Save new todo</h1>
         }
     }
 
