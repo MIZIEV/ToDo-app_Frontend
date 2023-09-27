@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { registerApiCall } from "../../services/AuthService";
-import { NavLink } from "react-router-dom";
+import styles from "../../styles/Register.module.css";
 
 function RegisterComponent() {
 
@@ -20,15 +20,18 @@ function RegisterComponent() {
     }
 
     return (
-        <div>
-            <h1>Register Component</h1>
+        <div className={`${styles.divConatiner}`}>
 
-            <h3>Registe form</h3>
-            <form>
+            <form className={`${styles.form}`}>
 
-                <div>
-                    <label>Name</label>
+                <div className={`${styles.divFields}`}>
+
+                    <div>
+                        <label className={`${styles.label}`}>Name</label>
+                    </div>
+
                     <input
+                        className={`${styles.input}`}
                         type="text"
                         name="name"
                         placeholder="Enter your name"
@@ -37,9 +40,14 @@ function RegisterComponent() {
                     ></input>
                 </div>
 
-                <div>
-                    <label>Username</label>
+                <div className={`${styles.divFields}`}>
+
+                    <div>
+                        <label className={`${styles.label}`}>Username</label>
+                    </div>
+
                     <input
+                        className={`${styles.input}`}
                         type="text"
                         name="username"
                         placeholder="Enter your username"
@@ -48,9 +56,14 @@ function RegisterComponent() {
                     ></input>
                 </div>
 
-                <div>
-                    <label>Email</label>
+                <div className={`${styles.divFields}`}>
+
+                    <div>
+                        <label className={`${styles.label}`}>Email</label>
+                    </div>
+
                     <input
+                        className={`${styles.input}`}
                         type="text"
                         name="email"
                         placeholder="Enter your email"
@@ -59,9 +72,14 @@ function RegisterComponent() {
                     ></input>
                 </div>
 
-                <div>
-                    <label>Password</label>
+                <div className={`${styles.divFields}`}>
+
+                    <div>
+                        <label className={`${styles.label}`}>Password</label>
+                    </div>
+
                     <input
+                        className={`${styles.input}`}
                         type="password"
                         name="password"
                         placeholder="Enter your password"
@@ -69,10 +87,9 @@ function RegisterComponent() {
                         onChange={(e) => { setPassword(e.target.value) }}
                     ></input>
                 </div>
-                <div>If you registered, you can <NavLink to="/login">login</NavLink></div>
 
                 <div>
-                    <button type="button" onClick={(e) => handleRegistrationForm(e)}>Submit</button>
+                    <button className={`${styles.button}`} type="button" onClick={(e) => handleRegistrationForm(e)}>Register</button>
                 </div>
 
             </form>
