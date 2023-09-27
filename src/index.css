@@ -3,12 +3,15 @@
   padding: 0;
 }
 
-body {
+#root {
+  height: 100vh;
+}
 
+body {
   font-family: 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
 
   color: white;
-  background-color: #112b49;
+  background-color: #064adb;
 }

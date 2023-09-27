@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { loginApiCall, saveLoggedInUser, storeToken } from "../../services/AuthService";
-import { NavLink, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
+import styles from "../../styles/Login.module.css";
 
 function LoginComponent() {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
 
     const navigator = useNavigate();
 
@@ -33,15 +33,16 @@ function LoginComponent() {
 
 
     return (
-        <div>
-            <h1>LoginComponent</h1>
+        <div className={`${styles.divConatiner}`}>
 
-            <h3>Login form</h3>
-            <form>
+            <h2>Login</h2>
 
-                <div>
-                    <label>Username</label>
+            <form className={`${styles.form}`}>
+
+                <div className={`${styles.divFields}`}>
+                    <label className={`${styles.label}`}>Username</label>
                     <input
+                        className={`${styles.input}`}
                         type="text"
                         name="username"
                         placeholder="Enter your username"
@@ -50,9 +51,10 @@ function LoginComponent() {
                     ></input>
                 </div>
 
-                <div>
-                    <label>Password</label>
+                <div className={`${styles.divFields}`}>
+                    <label className={`${styles.label}`}>Password</label>
                     <input
+                        className={`${styles.input}`}
                         type="password"
                         name="password"
                         placeholder="Enter your password"
@@ -62,11 +64,7 @@ function LoginComponent() {
                 </div>
 
                 <div>
-                    <h3>If you haven't account, you can <NavLink to="/register">Register now</NavLink></h3>
-                </div>
-
-                <div>
-                    <button type="button" onClick={(e) => handleLoginForm(e)}>Submit</button>
+                    <button className={`${styles.button}`} type="button" onClick={(e) => handleLoginForm(e)}>Login</button>
                 </div>
             </form>
         </div>
