@@ -1,0 +1,30 @@
+.header {
+    height: 20%;
+    width: 100%;
+    background-color: #003fc2;
+}
+
+.maindiv {
+    display: flex;
+    justify-content: space-between;
+}
+
+.divleft {
+    padding: 5px;
+    float: left;
+}
+
+.divright {
+    padding: 5px;
+    float: right;
+}
+
+.navlinksignin {
+    color: white;
+    padding-right: 5px;
+
+}
+
+.navlinksignin:hover {
+    color: #fe8804;
+}
