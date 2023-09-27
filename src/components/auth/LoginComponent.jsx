@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { loginApiCall, saveLoggedInUser, storeToken } from "../../services/AuthService";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "../../styles/Login.module.css";
 
 function LoginComponent() {
@@ -35,12 +35,12 @@ function LoginComponent() {
     return (
         <div className={`${styles.divConatiner}`}>
 
-            <h2>Login</h2>
-
             <form className={`${styles.form}`}>
 
                 <div className={`${styles.divFields}`}>
-                    <label className={`${styles.label}`}>Username</label>
+                    <div>
+                        <label className={`${styles.label}`}>Username</label>
+                    </div>
                     <input
                         className={`${styles.input}`}
                         type="text"
@@ -52,7 +52,9 @@ function LoginComponent() {
                 </div>
 
                 <div className={`${styles.divFields}`}>
-                    <label className={`${styles.label}`}>Password</label>
+                    <div>
+                        <label className={`${styles.label}`}>Password</label>
+                    </div>
                     <input
                         className={`${styles.input}`}
                         type="password"
