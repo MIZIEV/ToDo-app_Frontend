@@ -8,7 +8,7 @@
 
 .divFields {
     clear: both;
-    line-height:25px;
+    line-height: 25px;
     text-align: right;
     padding: 10px;
 }
@@ -20,7 +20,6 @@
 }
 
 .input {
-    
     border-radius: 10px;
     height: 50px;
     width: 300px;
@@ -39,5 +38,4 @@
 
 .button:hover {}
 
-.form {
-}
+.form {}
