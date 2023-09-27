@@ -37,7 +37,7 @@ function HeaderComponent() {
                     !isAuth &&
                     <div className={`${styles.divright}`}>
                         <NavLink className={`${styles.navlinksignin}`} to="/login">Sing in</NavLink>
-                        <button onClick={() => registrationHandler()}>Sing up</button>
+                        <button className={`${styles.button}`} onClick={() => registrationHandler()}>Sing up</button>
                     </div>
                 }
                 {

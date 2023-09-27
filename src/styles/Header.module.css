@@ -10,21 +10,34 @@
 }
 
 .divleft {
-    padding: 5px;
+    padding: 10px;
     float: left;
 }
 
 .divright {
-    padding: 5px;
+    padding: 10px;
     float: right;
 }
 
 .navlinksignin {
     color: white;
-    padding-right: 5px;
+    padding-right: 10px;
 
 }
 
 .navlinksignin:hover {
     color: #fe8804;
+}
+
+.button {
+    height: 30px;
+    width: 70px;
+    border-radius: 5px;
+    color: #fe8804;
+    border-color: #fe8804;
+    background-color: transparent;
+}
+.button:hover{
+    background-color: #fe8804;
+    color: white;
 }
