@@ -60,10 +60,12 @@ function TodoForm() {
                 pageTitle()
             }
             <form>
-                <input placeholder="Enter new todo" value={text} onChange={(e) => setText(e.target.value)} />
+                <div>
+                    <input placeholder="Enter new todo" value={text} onChange={(e) => setText(e.target.value)} />
+                </div>
 
                 <div>
-                    <button type="button" onClick={(e) => saveOrUpdateTodo(e)}>Submit</button>
+                    <button className={`${styles.button}`} type="button" onClick={(e) => saveOrUpdateTodo(e)}>Submit</button>
                 </div>
             </form>
         </div>

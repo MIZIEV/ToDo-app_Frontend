@@ -12,6 +12,7 @@
 
 .divleft {
     padding-left: 10px;
+    display: flex;
     margin: auto 0;
     float: left;
 }
@@ -59,4 +60,18 @@
 .button:hover {
     background-color: #fe8804;
     color: white;
+}
+
+.buttonNewTodo {
+    font-size: large;
+    height: 30px;
+    width: 140px;
+    border-radius: 5px;
+    color: white;
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.buttonNewTodo:hover {
+    color: #fe8804;
 }

@@ -40,7 +40,7 @@ function App() {
             </AuthenticateRoute>
           } />
 
-          <Route path='/add-todo' element={
+          <Route path='/add-todo/' element={
             <AuthenticateRoute>
               <TodoForm />
             </AuthenticateRoute>
