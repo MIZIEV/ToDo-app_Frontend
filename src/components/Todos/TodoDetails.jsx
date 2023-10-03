@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { changeTodoCompleteStatus, deleteTodo, getTodoByKey } from "../../services/TodoService";
+import styles from "../../styles/TodoDetails.module.css";
 
 function TodoDetails() {
 
@@ -43,22 +44,29 @@ function TodoDetails() {
     }
 
     return (
-        <div>
-            <h1>Todo details</h1>
+        <div className={`${styles.container}`}>
 
             <div>
-                <label >Todo name: </label>
                 <span>{text}</span>
             </div>
+
             <div>
                 <label >is completed: </label>
                 <span>{" " + completed}</span>
             </div>
 
-            <button onClick={() => changeStatusHandler(todoUniqueKey)}>Change todo status</button>
+            <div>
+                <button onClick={() => changeStatusHandler(todoUniqueKey)}>Change todo status</button>
+            </div>
 
-            <button onClick={() => editHandler(todoUniqueKey)}>Edit</button>
-            <button onClick={() => deleteHandler(todoUniqueKey)}>Delete</button>
+            <div>
+                <button onClick={() => editHandler(todoUniqueKey)}>Edit</button>
+            </div>
+
+            <div>
+                <button onClick={() => deleteHandler(todoUniqueKey)}>Delete</button>
+            </div>
+
 
         </div>
     )

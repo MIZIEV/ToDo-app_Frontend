@@ -27,3 +27,7 @@
     color: white;
     background-color: #fe8804;
 }
+
+.button:hover {
+    border-color: white;
+}

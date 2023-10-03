@@ -36,7 +36,9 @@
     background-color: #fe8804;
 }
 
-.button:hover {}
+.button:hover {
+    border-color: white;
+}
 
 .form {
     justify-content: center;
