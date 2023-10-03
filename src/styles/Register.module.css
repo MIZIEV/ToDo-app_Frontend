@@ -36,6 +36,6 @@
     background-color: #fe8804;
 }
 
-.button:hover {}
-
-.form {}
+.button:hover {
+    border-color: white;
+}

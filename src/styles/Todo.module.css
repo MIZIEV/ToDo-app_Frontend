@@ -2,12 +2,17 @@
     display: flex;
     align-items: center;
     padding: 10px 20px;
-    margin: 15px 0px;
+    margin: 15px auto;
     font-size: 1.5rem;
-    border-radius: 5px;
-    border: 2px solid #555;
-    color: #112b49;
-    background-color: #fbfef9;
+    border-radius: 15px;
+    border: 2px solid #1B1464;
+    color: white;
+    background-color: #1f2295;
+    width: 75%;
+}
+
+.todo:hover {
+    box-shadow: 10px 5px 5px #1B1464
 }
 
 .todoText {
@@ -19,4 +24,17 @@
     background-color: unset;
     border-color: gray;
     color: gray;
+}
+
+.detailButton {
+    font-size: medium;
+    height: 30px;
+    width: 70px;
+    border-radius: 10px;
+    color: white;
+    background-color: #fe8804;
+}
+
+.detailButton:hover {
+    border-color: white;
 }

@@ -7,9 +7,10 @@ function HeaderComponent() {
 
     const isAuth = isUserLoggedIn();
     const navigator = useNavigate();
+    const username = sessionStorage.getItem("authenticatedUser");
 
     function addNewTodo() {
-        navigator("/add-todo");
+        navigator(`/add-todo/`);
     }
 
     function handleLogout() {
@@ -21,25 +22,34 @@ function HeaderComponent() {
         navigator("/register")
     }
 
+    function todoListHandler() {
+        navigator(`/todos/${username}`)
+    }
+
     return (
 
         <header className={`${styles.header}`}>
             <div className={`${styles.maindiv}`}>
                 <div className={`${styles.divleft}`}>
-                    <h3>Todo manager</h3>
+                    <div>
+                        <h3>Todo manager</h3>
+                    </div>
+                    {
+                        isAuth &&
+                        <div>
+                            <button className={`${styles.buttonNewTodo}`} onClick={todoListHandler}>Todo list</button>
+                            <button className={`${styles.buttonNewTodo}`} onClick={addNewTodo}>Add new todo</button>
+                        </div>
+                    }
                 </div>
 
-                {
-                    //   isAuth &&
-                    // <button onClick={addNewTodo}>Add new todo</button>
-                }
                 {
                     !isAuth &&
                     <div className={`${styles.divright}`}>
                         <div className={`${styles.divNavLink}`}>
                             <NavLink className={`${styles.navlinksignin}`} to="/login">Sing in</NavLink>
                         </div>
-                        
+
                         <div className={`${styles.divNavLink}`}>
                             <button className={`${styles.button}`} onClick={() => registrationHandler()}>Sing up</button>
                         </div>
@@ -47,7 +57,9 @@ function HeaderComponent() {
                 }
                 {
                     isAuth &&
-                    <NavLink to="/login" onClick={handleLogout}>Logout</NavLink>
+                    <div className={`${styles.divright}`}>
+                        <NavLink className={`${styles.navlinklogout}`} to="/login" onClick={handleLogout}>Logout</NavLink>
+                    </div>
                 }
             </div>
         </header>
