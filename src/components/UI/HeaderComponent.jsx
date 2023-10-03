@@ -39,7 +39,7 @@ function HeaderComponent() {
                         <div className={`${styles.divNavLink}`}>
                             <NavLink className={`${styles.navlinksignin}`} to="/login">Sing in</NavLink>
                         </div>
-                        
+
                         <div className={`${styles.divNavLink}`}>
                             <button className={`${styles.button}`} onClick={() => registrationHandler()}>Sing up</button>
                         </div>
@@ -47,7 +47,9 @@ function HeaderComponent() {
                 }
                 {
                     isAuth &&
-                    <NavLink to="/login" onClick={handleLogout}>Logout</NavLink>
+                    <div className={`${styles.divright}`}>
+                        <NavLink className={`${styles.navlinklogout}`} to="/login" onClick={handleLogout}>Logout</NavLink>
+                    </div>
                 }
             </div>
         </header>

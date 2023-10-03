@@ -28,6 +28,11 @@
     margin: 10px;
 }
 
+.navlinklogout {
+    color: white;
+    margin: 10px;
+}
+
 .divNavLink {
     display: flex;
     margin: auto 0;
@@ -35,6 +40,10 @@
 }
 
 .navlinksignin:hover {
+    color: #fe8804;
+}
+
+.navlinklogout:hover {
     color: #fe8804;
 }
 
