@@ -15,7 +15,7 @@ function Todo(props) {
         <div className={`${styles.todo} ${todo.completed ? styles.completedTodo : ''}`} >
 
             <div className={styles.todoText}>{todo.text}</div>
-            <button onClick={() => todoDetailsHandler(todo.todoUniqueKey)}>Details</button>
+            <button className={`${styles.detailButton}`} onClick={() => todoDetailsHandler(todo.todoUniqueKey)}>Details</button>
         </div>
     )
 }
