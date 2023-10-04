@@ -3,3 +3,9 @@
     display: grid;
     grid-template-columns: 30% 40% 30%;
 }
+
+.todoCard {
+    margin: 10px;
+    border-radius: 15px;
+    background-color: #003fc2;
+}

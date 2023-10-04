@@ -11,13 +11,15 @@ function TodoDetails() {
     const username = sessionStorage.getItem("authenticatedUser");
     const [text, setText] = useState("");
     const [completed, setCompleted] = useState(false);
+    const [description, setDescription] = useState("")
 
     useEffect(() => {
         getTodoByKey(todoUniqueKey).then((responce) => {
 
             console.log(responce.data)
             setText(responce.data.text);
-            setCompleted(responce.data.completed)
+            setCompleted(responce.data.completed);
+            setDescription(responce.data.description);
 
         }).catch(error => console.error(error));
     }, []);
@@ -46,24 +48,30 @@ function TodoDetails() {
     return (
         <div className={`${styles.container}`}>
 
-            <div>
-                <span>{text}</span>
-            </div>
 
-            <div>
+
+            <div className={`${styles.todoCard}`}>
                 <label >is completed: </label>
                 <span>{" " + completed}</span>
             </div>
 
-            <div>
+            <div className={`${styles.todoCard}`}>
+                <span>{text}</span>
+            </div>
+
+            <div className={`${styles.todoCard}`}>
                 <button onClick={() => changeStatusHandler(todoUniqueKey)}>Change todo status</button>
             </div>
 
-            <div>
+            <div className={`${styles.todoCard}`}>
                 <button onClick={() => editHandler(todoUniqueKey)}>Edit</button>
             </div>
 
-            <div>
+            <div className={`${styles.todoCard}`}>
+                <span>{description}</span>
+            </div>
+
+            <div className={`${styles.todoCard}`}>
                 <button onClick={() => deleteHandler(todoUniqueKey)}>Delete</button>
             </div>
 
