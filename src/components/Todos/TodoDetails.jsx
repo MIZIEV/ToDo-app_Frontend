@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { changeTodoCompleteStatus, deleteTodo, getTodoByKey } from "../../services/TodoService";
+
+import { BiSolidEdit } from "react-icons/bi";
+import { AiFillDelete } from "react-icons/ai";
 import styles from "../../styles/TodoDetails.module.css";
 
 function TodoDetails() {
@@ -64,7 +67,9 @@ function TodoDetails() {
             </div>
 
             <div className={`${styles.todoCard}`}>
-                <button onClick={() => editHandler(todoUniqueKey)}>Edit</button>
+                <button className={`${styles.button}`} onClick={() => editHandler(todoUniqueKey)}>
+                    <BiSolidEdit className={`${styles.iconEdit}`} />
+                </button>
             </div>
 
             <div className={`${styles.todoCard}`}>
@@ -72,7 +77,9 @@ function TodoDetails() {
             </div>
 
             <div className={`${styles.todoCard}`}>
-                <button onClick={() => deleteHandler(todoUniqueKey)}>Delete</button>
+                <button className={`${styles.button}`} onClick={() => deleteHandler(todoUniqueKey)}>
+                    <AiFillDelete className={`${styles.iconDelete}`} />
+                </button>
             </div>
 
 

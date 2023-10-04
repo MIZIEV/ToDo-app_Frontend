@@ -8,4 +8,38 @@
     margin: 10px;
     border-radius: 15px;
     background-color: #003fc2;
+    position: relative;
+}
+
+.button {
+    height: 120px;
+    width: 120px;
+    border-color: transparent;
+    background-color: transparent;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    transform: translate3d(-50%, -50%, 0);
+}
+
+.iconEdit {
+    height: 100%;
+    width: 100%;
+    color: white;
+}
+
+.iconEdit:hover {
+    color: #fe8804;
+}
+
+.iconDelete {
+    height: 100%;
+    width: 100%;
+    color: white;
+}
+
+.iconDelete:hover {
+    color: #fc5c65;
 }
