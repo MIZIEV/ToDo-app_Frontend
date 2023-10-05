@@ -5,6 +5,8 @@ import { changeTodoCompleteStatus, deleteTodo, getTodoByKey } from "../../servic
 
 import { BiSolidEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
+import CircularProgress from '@mui/material/CircularProgress';
+
 import styles from "../../styles/TodoDetails.module.css";
 
 function TodoDetails() {
@@ -54,8 +56,15 @@ function TodoDetails() {
 
 
             <div className={`${styles.todoCard}`}>
-                <label >is completed: </label>
-                <span>{" " + completed}</span>
+
+                <div className={`${styles.progressContainer}`}>
+                    <label >Complete status </label>
+                    <div >
+                        <CircularProgress size="120px" color="warning" variant="determinate" value={100} />
+                    </div>
+                </div>
+
+
             </div>
 
             <div className={`${styles.todoCard}`}>
