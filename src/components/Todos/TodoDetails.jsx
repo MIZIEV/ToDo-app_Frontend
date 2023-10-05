@@ -6,6 +6,9 @@ import { changeTodoCompleteStatus, deleteTodo, getTodoByKey } from "../../servic
 import { BiSolidEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import CircularProgress from '@mui/material/CircularProgress';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 import styles from "../../styles/TodoDetails.module.css";
 
@@ -72,7 +75,13 @@ function TodoDetails() {
             </div>
 
             <div className={`${styles.todoCard}`}>
-                <button onClick={() => changeStatusHandler(todoUniqueKey)}>Change todo status</button>
+                <div>
+                    <label>Check list:</label>
+                    <FormGroup>
+                        <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
+                        <FormControlLabel required control={<Checkbox />} label="Required" />
+                    </FormGroup>
+                </div>
             </div>
 
             <div className={`${styles.todoCard}`}>
