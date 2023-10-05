@@ -2,6 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { changeTodoCompleteStatus, deleteTodo, getTodoByKey } from "../../services/TodoService";
+
+import { BiSolidEdit } from "react-icons/bi";
+import { AiFillDelete } from "react-icons/ai";
+import CircularProgress from '@mui/material/CircularProgress';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+
 import styles from "../../styles/TodoDetails.module.css";
 
 function TodoDetails() {
@@ -11,13 +19,15 @@ function TodoDetails() {
     const username = sessionStorage.getItem("authenticatedUser");
     const [text, setText] = useState("");
     const [completed, setCompleted] = useState(false);
+    const [description, setDescription] = useState("")
 
     useEffect(() => {
         getTodoByKey(todoUniqueKey).then((responce) => {
 
             console.log(responce.data)
             setText(responce.data.text);
-            setCompleted(responce.data.completed)
+            setCompleted(responce.data.completed);
+            setDescription(responce.data.description);
 
         }).catch(error => console.error(error));
     }, []);
@@ -46,25 +56,48 @@ function TodoDetails() {
     return (
         <div className={`${styles.container}`}>
 
-            <div>
+
+
+            <div className={`${styles.todoCard}`}>
+
+                <div className={`${styles.progressContainer}`}>
+                    <label >Complete status </label>
+                    <div >
+                        <CircularProgress size="120px" color="warning" variant="determinate" value={100} />
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div className={`${styles.todoCard}`}>
                 <span>{text}</span>
             </div>
 
-            <div>
-                <label >is completed: </label>
-                <span>{" " + completed}</span>
+            <div className={`${styles.todoCard}`}>
+                <div>
+                    <label>Check list:</label>
+                    <FormGroup>
+                        <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
+                        <FormControlLabel required control={<Checkbox />} label="Required" />
+                    </FormGroup>
+                </div>
             </div>
 
-            <div>
-                <button onClick={() => changeStatusHandler(todoUniqueKey)}>Change todo status</button>
+            <div className={`${styles.todoCard}`}>
+                <button className={`${styles.button}`} onClick={() => editHandler(todoUniqueKey)}>
+                    <BiSolidEdit className={`${styles.iconEdit}`} />
+                </button>
             </div>
 
-            <div>
-                <button onClick={() => editHandler(todoUniqueKey)}>Edit</button>
+            <div className={`${styles.todoCard}`}>
+                <span>{description}</span>
             </div>
 
-            <div>
-                <button onClick={() => deleteHandler(todoUniqueKey)}>Delete</button>
+            <div className={`${styles.todoCard}`}>
+                <button className={`${styles.button}`} onClick={() => deleteHandler(todoUniqueKey)}>
+                    <AiFillDelete className={`${styles.iconDelete}`} />
+                </button>
             </div>
 
 

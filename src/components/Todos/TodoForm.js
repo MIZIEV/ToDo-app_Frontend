@@ -7,7 +7,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 function TodoForm() {
 
-    const [text, setText] = useState("");
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
     const [username, setUsername] = useState("");
     const navigator = useNavigate();
     const { todoUniqueKey } = useParams();
@@ -16,23 +17,26 @@ function TodoForm() {
         event.preventDefault();
 
         const username = sessionStorage.getItem("authenticatedUser");
-        const todo = { text, todoUniqueKey: uuidv4(), username };
+        const todo = { name, description, todoUniqueKey: uuidv4(), username };
 
         setUsername(username);
-        setText('');
+        setName('');
 
         if (todoUniqueKey) {
 
             updateTodod(todoUniqueKey, todo).then((responce) => {
-                console.log("update func")
+
                 console.log(todo)
                 console.log(responce.data);
-                navigator(`/todos/${username}`)
+                navigator(`/todos/${username}`);
+
             }).catch(error => console.error(error));
         } else {
             saveTodo(todo).then((responce) => {
+
                 console.log(responce.data)
                 navigator(`/todos/${username}`)
+
             }).catch(error => { console.error(error) });
         }
     }
@@ -40,8 +44,11 @@ function TodoForm() {
     useEffect(() => {
         if (todoUniqueKey) {
             getTodoByKey(todoUniqueKey).then((responce) => {
+
                 console.log(responce)
-                setText(responce.data.text);
+                setName(responce.data.name);
+                setDescription(responce.data.description);
+
             }).catch(error => console.error(error));
         }
     }, [])
@@ -60,8 +67,12 @@ function TodoForm() {
                 pageTitle()
             }
             <form>
-                <div>
-                    <input placeholder="Enter new todo" value={text} onChange={(e) => setText(e.target.value)} />
+                <div className={`${styles.inputDiv}`}>
+                    <input placeholder="Enter new todo" value={name} onChange={(e) => setName(e.target.value)} />
+                </div>
+
+                <div className={`${styles.inputDiv}`}>
+                    <input placeholder="Enter todo description" value={description} onChange={(e) => setDescription(e.target.value)} />
                 </div>
 
                 <div>

@@ -31,3 +31,7 @@
 .button:hover {
     border-color: white;
 }
+
+.inputDiv {
+    margin: 10px auto;
+}
