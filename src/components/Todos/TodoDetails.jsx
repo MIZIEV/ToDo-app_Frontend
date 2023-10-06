@@ -2,15 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { changeTodoCompleteStatus, deleteTodo, getTodoByKey } from "../../services/TodoService";
+import TodoElementComponent from "./TodoElementComponent";
 
 import { BiSolidEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import CircularProgress from '@mui/material/CircularProgress';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 
 import styles from "../../styles/TodoDetails.module.css";
+import { getAllElements, saveNewTodoElement } from "../../services/TodoElementService";
 
 function TodoDetails() {
 
@@ -20,6 +19,11 @@ function TodoDetails() {
     const [text, setText] = useState("");
     const [completed, setCompleted] = useState(false);
     const [description, setDescription] = useState("")
+
+    const [elementName, setElementName] = useState("");
+    const [elementComleted, setElementCompleted] = useState(false);
+
+    const [elementList, setElementList] = useState([]);
 
     useEffect(() => {
         getTodoByKey(todoUniqueKey).then((responce) => {
@@ -31,6 +35,20 @@ function TodoDetails() {
 
         }).catch(error => console.error(error));
     }, []);
+
+    useEffect(() => {
+        listElements();
+    }, []);
+
+    function listElements() {
+        getAllElements(todoUniqueKey).then((responce) => {
+
+            setElementList(responce.data);
+            console.log(responce.data);
+            console.log(elementList)
+
+        }).catch(error => console.error(error));
+    }
 
 
     function editHandler(todoUniqueKey) {
@@ -51,6 +69,16 @@ function TodoDetails() {
         }).catch(error => HTMLFormControlsCollection.error(error));
         //todo: it is a temporary solution (window.location.reload()) must be removed
         window.location.reload();
+    }
+
+    function saveNewTodoElementHandler(event) {
+        event.preventDefault();
+
+        const todoElement = { elementName, elementComleted };
+
+        saveNewTodoElement(todoUniqueKey, todoElement).then((responce) => {
+            console.log(responce.data)
+        }).catch(error => console.error(error));
     }
 
     return (
@@ -76,11 +104,24 @@ function TodoDetails() {
 
             <div className={`${styles.todoCard}`}>
                 <div>
+                    <form>
+
+                        <input placeholder="Enter todo element name"
+                            value={elementName}
+                            onChange={(e) => setElementName(e.target.value)} type="text" />
+
+                        <button type="button" onClick={(e) => saveNewTodoElementHandler(e)}>Submit</button>
+                    </form>
                     <label>Check list:</label>
-                    <FormGroup>
-                        <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
-                        <FormControlLabel required control={<Checkbox />} label="Required" />
-                    </FormGroup>
+
+                    {
+                        elementList.map((todoElement) => <TodoElementComponent  todoElement={todoElement} />)
+                    }
+                    <div>
+
+                    </div>
+
+
                 </div>
             </div>
 
