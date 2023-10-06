@@ -2,6 +2,7 @@
     height: 80%;
     display: grid;
     grid-template-columns: 30% 40% 30%;
+    grid-template-rows: 50% 50%;
 }
 
 .todoCard {
@@ -50,4 +51,14 @@
     left: 50%;
     z-index: 1;
     transform: translate3d(-50%, -50%, 0);
+}
+
+.elementsContainer{
+    height: 100%;
+}
+
+.elementsBox {
+    padding: 15px;
+    overflow-y: scroll;
+    height: 70%
 }

@@ -50,7 +50,6 @@ function TodoDetails() {
         }).catch(error => console.error(error));
     }
 
-
     function editHandler(todoUniqueKey) {
         navigator(`/update-todo/${todoUniqueKey}`)
     }
@@ -60,7 +59,6 @@ function TodoDetails() {
             console.log(responce.data);
             navigator(`/todos/${username}`)
         }).catch(error => console.error(error));
-
     }
 
     function changeStatusHandler(todoUniqueKey) {
@@ -79,12 +77,11 @@ function TodoDetails() {
         saveNewTodoElement(todoUniqueKey, todoElement).then((responce) => {
             console.log(responce.data)
         }).catch(error => console.error(error));
+        window.location.reload();
     }
 
     return (
         <div className={`${styles.container}`}>
-
-
 
             <div className={`${styles.todoCard}`}>
 
@@ -103,7 +100,7 @@ function TodoDetails() {
             </div>
 
             <div className={`${styles.todoCard}`}>
-                <div>
+                <div className={`${styles.elementsContainer}`}>
                     <form>
 
                         <input placeholder="Enter todo element name"
@@ -114,13 +111,11 @@ function TodoDetails() {
                     </form>
                     <label>Check list:</label>
 
-                    {
-                        elementList.map((todoElement) => <TodoElementComponent  todoElement={todoElement} />)
-                    }
-                    <div>
-
+                    <div className={`${styles.elementsBox}`}>
+                        {
+                            elementList.map((todoElement) => <TodoElementComponent key={todoElement.id} todoElement={todoElement} />)
+                        }
                     </div>
-
 
                 </div>
             </div>
@@ -140,7 +135,6 @@ function TodoDetails() {
                     <AiFillDelete className={`${styles.iconDelete}`} />
                 </button>
             </div>
-
 
         </div>
     )
