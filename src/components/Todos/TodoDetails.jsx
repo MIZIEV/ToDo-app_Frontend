@@ -6,11 +6,9 @@ import { changeTodoCompleteStatus, deleteTodo, getTodoByKey } from "../../servic
 import { BiSolidEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import CircularProgress from '@mui/material/CircularProgress';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 
 import styles from "../../styles/TodoDetails.module.css";
+import { saveNewTodoElement } from "../../services/TodoElementService";
 
 function TodoDetails() {
 
@@ -20,6 +18,9 @@ function TodoDetails() {
     const [text, setText] = useState("");
     const [completed, setCompleted] = useState(false);
     const [description, setDescription] = useState("")
+
+    const [elementName, setElementName] = useState("");
+    const [elementComleted, setElementCOmpleted] = useState(false);
 
     useEffect(() => {
         getTodoByKey(todoUniqueKey).then((responce) => {
@@ -53,6 +54,16 @@ function TodoDetails() {
         window.location.reload();
     }
 
+    function saveNewTodoElementHandler(event) {
+        event.preventDefault();
+
+        const todoElement = { elementName, elementComleted };
+
+        saveNewTodoElement(todoUniqueKey, todoElement).then((responce) => {
+            console.log(responce.data)
+        }).catch(error => console.error(error));
+    }
+
     return (
         <div className={`${styles.container}`}>
 
@@ -76,11 +87,17 @@ function TodoDetails() {
 
             <div className={`${styles.todoCard}`}>
                 <div>
+                    <form>
+
+                        <input placeholder="Enter todo element name"
+                            value={elementName}
+                            onChange={(e) => setElementName(e.target.value)} type="text" />
+
+                        <button type="button" onClick={(e) => saveNewTodoElementHandler(e)}>Submit</button>
+                    </form>
                     <label>Check list:</label>
-                    <FormGroup>
-                        <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
-                        <FormControlLabel required control={<Checkbox />} label="Required" />
-                    </FormGroup>
+
+
                 </div>
             </div>
 
