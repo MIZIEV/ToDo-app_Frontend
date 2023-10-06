@@ -60,7 +60,6 @@ function TodoDetails() {
             console.log(responce.data);
             navigator(`/todos/${username}`)
         }).catch(error => console.error(error));
-
     }
 
     function changeStatusHandler(todoUniqueKey) {
@@ -114,11 +113,10 @@ function TodoDetails() {
                     </form>
                     <label>Check list:</label>
 
-                    {
-                        elementList.map((todoElement) => <TodoElementComponent  todoElement={todoElement} />)
-                    }
                     <div>
-
+                        {
+                            elementList.map((todoElement) => <TodoElementComponent key={todoElement.id} todoElement={todoElement} />)
+                        }
                     </div>
 
 
