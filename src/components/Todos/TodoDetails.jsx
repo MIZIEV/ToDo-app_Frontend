@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { changeTodoCompleteStatus, deleteTodo, getTodoByKey } from "../../services/TodoService";
+import TodoElementComponent from "./TodoElementComponent";
 
 import { BiSolidEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import CircularProgress from '@mui/material/CircularProgress';
 
 import styles from "../../styles/TodoDetails.module.css";
-import { saveNewTodoElement } from "../../services/TodoElementService";
+import { getAllElements, saveNewTodoElement } from "../../services/TodoElementService";
 
 function TodoDetails() {
 
@@ -20,7 +21,9 @@ function TodoDetails() {
     const [description, setDescription] = useState("")
 
     const [elementName, setElementName] = useState("");
-    const [elementComleted, setElementCOmpleted] = useState(false);
+    const [elementComleted, setElementCompleted] = useState(false);
+
+    const [elementList, setElementList] = useState([]);
 
     useEffect(() => {
         getTodoByKey(todoUniqueKey).then((responce) => {
@@ -32,6 +35,20 @@ function TodoDetails() {
 
         }).catch(error => console.error(error));
     }, []);
+
+    useEffect(() => {
+        listElements();
+    }, []);
+
+    function listElements() {
+        getAllElements(todoUniqueKey).then((responce) => {
+
+            setElementList(responce.data);
+            console.log(responce.data);
+            console.log(elementList)
+
+        }).catch(error => console.error(error));
+    }
 
 
     function editHandler(todoUniqueKey) {
@@ -96,6 +113,13 @@ function TodoDetails() {
                         <button type="button" onClick={(e) => saveNewTodoElementHandler(e)}>Submit</button>
                     </form>
                     <label>Check list:</label>
+
+                    {
+                        elementList.map((todoElement) => <TodoElementComponent  todoElement={todoElement} />)
+                    }
+                    <div>
+
+                    </div>
 
 
                 </div>
