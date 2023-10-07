@@ -24,6 +24,21 @@ function TodoDetails() {
     const [elementComleted, setElementCompleted] = useState(false);
 
     const [elementList, setElementList] = useState([]);
+    const [todoProgress, setTodoProgress] = useState(0);
+
+
+
+    function progressResult(elementList) {
+        const onePercent = 100 / elementList.length;
+
+        console.log("one percent - " + onePercent);
+        let progress = elementList.filter((todoElement) => todoElement.completed === true);
+
+        let result = onePercent * progress.length;
+
+        console.log("result -------- " + result + "    END OF FUNCTION");
+        return result;
+    }
 
     useEffect(() => {
         getTodoByKey(todoUniqueKey).then((responce) => {
@@ -37,18 +52,17 @@ function TodoDetails() {
     }, []);
 
     useEffect(() => {
-        listElements();
-    }, []);
-
-    function listElements() {
         getAllElements(todoUniqueKey).then((responce) => {
 
             setElementList(responce.data);
             console.log(responce.data);
             console.log(elementList)
 
+            setTodoProgress(progressResult(responce.data));
+
         }).catch(error => console.error(error));
-    }
+
+    }, [elementList, todoProgress]);
 
     function editHandler(todoUniqueKey) {
         navigator(`/update-todo/${todoUniqueKey}`)
@@ -88,7 +102,10 @@ function TodoDetails() {
                 <div className={`${styles.progressContainer}`}>
                     <label >Complete status </label>
                     <div >
-                        <CircularProgress size="120px" color="warning" variant="determinate" value={100} />
+                        {
+                            console.log("var BEFORE - " + todoProgress)
+                        }
+                        <CircularProgress size="120px" color="warning" variant="determinate" value={todoProgress} />
                     </div>
                 </div>
 
