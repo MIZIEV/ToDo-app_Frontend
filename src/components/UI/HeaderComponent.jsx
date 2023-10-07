@@ -13,6 +13,10 @@ function HeaderComponent() {
         navigator(`/add-todo/`);
     }
 
+    function archiveHandler() {
+        navigator(`/todos-completed/${username}`);
+    }
+
     function handleLogout() {
         logout();
         navigator("/login");
@@ -39,6 +43,7 @@ function HeaderComponent() {
                         <div>
                             <button className={`${styles.buttonNewTodo}`} onClick={todoListHandler}>Todo list</button>
                             <button className={`${styles.buttonNewTodo}`} onClick={addNewTodo}>Add new todo</button>
+                            <button className={`${styles.buttonNewTodo}`} onClick={archiveHandler}>Archive</button>
                         </div>
                     }
                 </div>
