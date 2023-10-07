@@ -62,7 +62,7 @@ function TodoDetails() {
 
         }).catch(error => console.error(error));
 
-    }, [elementList, todoProgress]);
+    }, []);
 
     function editHandler(todoUniqueKey) {
         navigator(`/update-todo/${todoUniqueKey}`)
@@ -99,8 +99,8 @@ function TodoDetails() {
 
             <div className={`${styles.todoCard}`}>
 
+                <label>Complete status </label>
                 <div className={`${styles.progressContainer}`}>
-                    <label >Complete status </label>
                     <div >
                         {
                             console.log("var BEFORE - " + todoProgress)
@@ -120,11 +120,12 @@ function TodoDetails() {
                 <div className={`${styles.elementsContainer}`}>
                     <form>
 
-                        <input placeholder="Enter todo element name"
+                        <input className={`${styles.input}`}
+                            placeholder="Enter todo element name"
                             value={elementName}
                             onChange={(e) => setElementName(e.target.value)} type="text" />
 
-                        <button type="button" onClick={(e) => saveNewTodoElementHandler(e)}>Submit</button>
+                        <button className={`${styles.elementButton}`} type="button" onClick={(e) => saveNewTodoElementHandler(e)}>Submit</button>
                     </form>
                     <label>Check list:</label>
 
