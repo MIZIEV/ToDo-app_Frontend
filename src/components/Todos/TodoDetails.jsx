@@ -47,6 +47,7 @@ function TodoDetails() {
             setDescription(responce.data.description);
 
         }).catch(error => console.error(error));
+
     }, []);
 
     useEffect(() => {
@@ -59,7 +60,6 @@ function TodoDetails() {
             setTodoProgress(progressResult(responce.data));
 
         }).catch(error => console.error(error));
-        //todo: it is a temporary solution (window.location.reload()) must be removed
 
     }, []);
 
@@ -77,9 +77,8 @@ function TodoDetails() {
     function changeStatusHandler(todoUniqueKey) {
         changeTodoCompleteStatus(todoUniqueKey).then((responce) => {
             console.log(responce.data);
-        }).catch(error => HTMLFormControlsCollection.error(error));
-        //todo: it is a temporary solution (window.location.reload()) must be removed
-        window.location.reload();
+            navigator(`/todos/${username}`)
+        }).catch(error => console.error(error));
     }
 
     function saveNewTodoElementHandler(event) {
@@ -93,6 +92,21 @@ function TodoDetails() {
         window.location.reload();
     }
 
+    function TodoDescription(todoProgress) {
+        if (todoProgress === 100) {
+
+            return (
+                <div className={`${styles.completedContainer}`}>
+                    <span lassName={`${styles.span}`}>Do you want completed todo?</span>
+                    <div>
+                        <button className={`${styles.completedButton}`} onClick={() => changeStatusHandler(todoUniqueKey)}>Completed</button>
+                    </div>
+                </div>)
+        } else {
+            return <span className={`${styles.span}`}>{description}</span>
+        }
+    }
+
     return (
         <div className={`${styles.container}`}>
 
@@ -102,7 +116,7 @@ function TodoDetails() {
                 <div className={`${styles.progressContainer}`}>
                     <div >
                         {
-                            console.log("var BEFORE - " + todoProgress)
+                            console.log("var BEFORE - " + todoProgress + "   elementList - " + elementList)
                         }
                         <CircularProgress size="120px" color="warning" variant="determinate" value={todoProgress} />
                     </div>
@@ -144,7 +158,9 @@ function TodoDetails() {
             </div>
 
             <div className={`${styles.todoCard}`}>
-                <span className={`${styles.span}`}>{description}</span>
+                {
+                    TodoDescription(todoProgress)
+                }
             </div>
 
             <div className={`${styles.todoCard}`}>

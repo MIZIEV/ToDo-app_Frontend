@@ -94,3 +94,27 @@
     margin-right: -50%;
     transform: translate(-50%, -50%);
 }
+
+.completedContainer {
+    font-size: large;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+.completedButton {
+    margin-top: 15px;
+    font-size: large;
+    height: 60px;
+    width: 140px;
+    border-radius: 10px;
+    color: white;
+    background-color: #fe8804;
+}
+
+.completedButton:hover {
+    border-color: white;
+}

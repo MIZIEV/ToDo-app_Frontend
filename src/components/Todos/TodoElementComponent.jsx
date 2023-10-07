@@ -15,6 +15,9 @@ function TodoElementComponent(props) {
 
         changeCompleteStatus(todoElement.id).then((responce) => {
             console.log(responce.data);
+            window.location.reload();
+            //todo: it is a temporary solution (window.location.reload()) must be removed
+
         }).catch(error => console.error(error));
     }
 
