@@ -16,7 +16,7 @@ function TodoDetails() {
     const { todoUniqueKey } = useParams();
     const navigator = useNavigate();
     const username = sessionStorage.getItem("authenticatedUser");
-    const [text, setText] = useState("");
+    const [name, setName] = useState("");
     const [completed, setCompleted] = useState(false);
     const [description, setDescription] = useState("")
 
@@ -25,8 +25,6 @@ function TodoDetails() {
 
     const [elementList, setElementList] = useState([]);
     const [todoProgress, setTodoProgress] = useState(0);
-
-
 
     function progressResult(elementList) {
         const onePercent = 100 / elementList.length;
@@ -44,7 +42,7 @@ function TodoDetails() {
         getTodoByKey(todoUniqueKey).then((responce) => {
 
             console.log(responce.data)
-            setText(responce.data.text);
+            setName(responce.data.name);
             setCompleted(responce.data.completed);
             setDescription(responce.data.description);
 
@@ -61,6 +59,7 @@ function TodoDetails() {
             setTodoProgress(progressResult(responce.data));
 
         }).catch(error => console.error(error));
+        //todo: it is a temporary solution (window.location.reload()) must be removed
 
     }, []);
 
@@ -113,7 +112,7 @@ function TodoDetails() {
             </div>
 
             <div className={`${styles.todoCard}`}>
-                <span>{text}</span>
+                <span className={`${styles.span}`}>{name}</span>
             </div>
 
             <div className={`${styles.todoCard}`}>
@@ -145,7 +144,7 @@ function TodoDetails() {
             </div>
 
             <div className={`${styles.todoCard}`}>
-                <span>{description}</span>
+                <span className={`${styles.span}`}>{description}</span>
             </div>
 
             <div className={`${styles.todoCard}`}>

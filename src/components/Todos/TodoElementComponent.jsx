@@ -22,7 +22,7 @@ function TodoElementComponent(props) {
         <div>
             <FormGroup>
                 <FormControlLabel control={<Checkbox checked={checked}
-                    onChange={changeStatusHandler} />} label={todoElement.elementName} />
+                    onChange={(e) => changeStatusHandler(e)} />} label={todoElement.elementName} />
             </FormGroup>
         </div>
     )
