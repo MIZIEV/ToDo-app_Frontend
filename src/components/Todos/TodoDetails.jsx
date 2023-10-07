@@ -7,6 +7,8 @@ import TodoElementComponent from "./TodoElementComponent";
 import { BiSolidEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import CircularProgress from '@mui/material/CircularProgress';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
 import styles from "../../styles/TodoDetails.module.css";
 import { getAllElements, saveNewTodoElement } from "../../services/TodoElementService";
@@ -107,6 +109,17 @@ function TodoDetails() {
         }
     }
 
+    function showProgress(todoProgress) {
+        if (isNaN(todoProgress)) {
+            return 0
+        }
+        else if (todoProgress == undefined) {
+            return 0
+        } else {
+            return todoProgress;
+        }
+    }
+
     return (
         <div className={`${styles.container}`}>
 
@@ -114,12 +127,30 @@ function TodoDetails() {
 
                 <label>Complete status </label>
                 <div className={`${styles.progressContainer}`}>
-                    <div >
+                    <Box sx={{ position: 'relative', display: 'inline-flex' }}>
                         {
                             console.log("var BEFORE - " + todoProgress + "   elementList - " + elementList)
                         }
-                        <CircularProgress size="120px" color="warning" variant="determinate" value={todoProgress} />
-                    </div>
+                        <CircularProgress size="120px" sx={{ color: "#fe8804" }} variant="determinate" value={todoProgress} />
+                        <Box sx={{
+                            top: 0,
+                            left: 0,
+                            bottom: 0,
+                            right: 0,
+                            position: 'absolute',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}>
+                            <Typography variant="caption" component="div" sx={{
+                                color: "white",
+                                fontSize: "large"
+                            }}>
+                                {`${showProgress(todoProgress)}%`}
+                            </Typography>
+
+                        </Box>
+                    </Box>
                 </div>
 
 

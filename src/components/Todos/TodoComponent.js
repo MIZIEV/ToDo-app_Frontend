@@ -12,7 +12,7 @@ function Todo(props) {
 
     function completedOrNot(todo) {
         if (todo.completed) {
-            return <div>Completed</div>
+            return <div className={`${styles.completedDiv}`}>Completed</div>
         } else {
             return <button className={`${styles.detailButton}`} onClick={() => todoDetailsHandler(todo.todoUniqueKey)}>Details</button>
         }

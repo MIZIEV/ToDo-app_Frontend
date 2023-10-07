@@ -24,7 +24,14 @@ function TodoElementComponent(props) {
     return (
         <div>
             <FormGroup>
-                <FormControlLabel control={<Checkbox checked={checked}
+                <FormControlLabel control={<Checkbox
+                    sx={{
+                        color: "white",
+                        '&.Mui-checked': {
+                            color: "#fe8804"
+                        }
+                    }
+                    } checked={checked}
                     onChange={(e) => changeStatusHandler(e)} />} label={todoElement.elementName} />
             </FormGroup>
         </div>
