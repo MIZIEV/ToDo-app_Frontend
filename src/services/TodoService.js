@@ -14,6 +14,8 @@ axios.interceptors.request.use(function (config) {
 
 export const getAllTodos = () => axios.get(BASE_REST_API_URL + "/todos/" + username);
 
+export const getAllCompletedTodo = () => axios.get(BASE_REST_API_URL + "/todos-completed/" + username);
+
 export const getTodoByKey = (todoUniqueKey) => axios.get(BASE_REST_API_URL + "/todo/" + todoUniqueKey);
 
 export const saveTodo = (todo) => axios.post(BASE_REST_API_URL + "/add", todo);

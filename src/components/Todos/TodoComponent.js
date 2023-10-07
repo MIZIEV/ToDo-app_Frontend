@@ -10,12 +10,23 @@ function Todo(props) {
         navigator(`/todo-details/${todoUniqueKey}`)
     }
 
+    function completedOrNot(todo) {
+        if (todo.completed) {
+            return <div>Completed</div>
+        } else {
+            return <button className={`${styles.detailButton}`} onClick={() => todoDetailsHandler(todo.todoUniqueKey)}>Details</button>
+        }
+
+    }
+
     return (
 
         <div className={`${styles.todo}`} >
 
             <div className={styles.todoText}>{todo.name}</div>
-            <button className={`${styles.detailButton}`} onClick={() => todoDetailsHandler(todo.todoUniqueKey)}>Details</button>
+            {
+                completedOrNot(todo)
+            }
         </div>
     )
 }
