@@ -10,6 +10,7 @@ import HeaderComponent from './components/UI/HeaderComponent';
 import FooterComponent from './components/UI/FooterComponent';
 import { isUserLoggedIn } from './services/AuthService';
 import TodoDetails from './components/Todos/TodoDetails';
+import ArchiveListComponent from './components/Todos/ArchiveListComponent';
 
 function App() {
 
@@ -37,6 +38,12 @@ function App() {
           <Route path='/todos/:username' element={
             <AuthenticateRoute>
               <TodoList />
+            </AuthenticateRoute>
+          } />
+          
+          <Route path='/todos-completed/:username' element={
+            <AuthenticateRoute>
+              <ArchiveListComponent />
             </AuthenticateRoute>
           } />
 

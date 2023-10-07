@@ -38,3 +38,7 @@
 .detailButton:hover {
     border-color: white;
 }
+
+.completedDiv{
+    color: #55efc4;
+}

@@ -7,6 +7,8 @@ import TodoElementComponent from "./TodoElementComponent";
 import { BiSolidEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import CircularProgress from '@mui/material/CircularProgress';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
 import styles from "../../styles/TodoDetails.module.css";
 import { getAllElements, saveNewTodoElement } from "../../services/TodoElementService";
@@ -16,7 +18,7 @@ function TodoDetails() {
     const { todoUniqueKey } = useParams();
     const navigator = useNavigate();
     const username = sessionStorage.getItem("authenticatedUser");
-    const [text, setText] = useState("");
+    const [name, setName] = useState("");
     const [completed, setCompleted] = useState(false);
     const [description, setDescription] = useState("")
 
@@ -24,31 +26,44 @@ function TodoDetails() {
     const [elementComleted, setElementCompleted] = useState(false);
 
     const [elementList, setElementList] = useState([]);
+    const [todoProgress, setTodoProgress] = useState(0);
+
+    function progressResult(elementList) {
+        const onePercent = 100 / elementList.length;
+
+        console.log("one percent - " + onePercent);
+        let progress = elementList.filter((todoElement) => todoElement.completed === true);
+
+        let result = onePercent * progress.length;
+
+        console.log("result -------- " + result + "    END OF FUNCTION");
+        return result;
+    }
 
     useEffect(() => {
         getTodoByKey(todoUniqueKey).then((responce) => {
 
             console.log(responce.data)
-            setText(responce.data.text);
+            setName(responce.data.name);
             setCompleted(responce.data.completed);
             setDescription(responce.data.description);
 
         }).catch(error => console.error(error));
+
     }, []);
 
     useEffect(() => {
-        listElements();
-    }, []);
-
-    function listElements() {
         getAllElements(todoUniqueKey).then((responce) => {
 
             setElementList(responce.data);
             console.log(responce.data);
             console.log(elementList)
 
+            setTodoProgress(progressResult(responce.data));
+
         }).catch(error => console.error(error));
-    }
+
+    }, []);
 
     function editHandler(todoUniqueKey) {
         navigator(`/update-todo/${todoUniqueKey}`)
@@ -64,9 +79,8 @@ function TodoDetails() {
     function changeStatusHandler(todoUniqueKey) {
         changeTodoCompleteStatus(todoUniqueKey).then((responce) => {
             console.log(responce.data);
-        }).catch(error => HTMLFormControlsCollection.error(error));
-        //todo: it is a temporary solution (window.location.reload()) must be removed
-        window.location.reload();
+            navigator(`/todos/${username}`)
+        }).catch(error => console.error(error));
     }
 
     function saveNewTodoElementHandler(event) {
@@ -80,34 +94,82 @@ function TodoDetails() {
         window.location.reload();
     }
 
+    function TodoDescription(todoProgress) {
+        if (todoProgress === 100) {
+
+            return (
+                <div className={`${styles.completedContainer}`}>
+                    <span lassName={`${styles.span}`}>Do you want completed todo?</span>
+                    <div>
+                        <button className={`${styles.completedButton}`} onClick={() => changeStatusHandler(todoUniqueKey)}>Completed</button>
+                    </div>
+                </div>)
+        } else {
+            return <span className={`${styles.span}`}>{description}</span>
+        }
+    }
+
+    function showProgress(todoProgress) {
+        if (isNaN(todoProgress)) {
+            return 0
+        }
+        else if (todoProgress == undefined) {
+            return 0
+        } else {
+            return todoProgress;
+        }
+    }
+
     return (
         <div className={`${styles.container}`}>
 
             <div className={`${styles.todoCard}`}>
 
+                <label>Complete status </label>
                 <div className={`${styles.progressContainer}`}>
-                    <label >Complete status </label>
-                    <div >
-                        <CircularProgress size="120px" color="warning" variant="determinate" value={100} />
-                    </div>
+                    <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+                        {
+                            console.log("var BEFORE - " + todoProgress + "   elementList - " + elementList)
+                        }
+                        <CircularProgress size="120px" sx={{ color: "#fe8804" }} variant="determinate" value={todoProgress} />
+                        <Box sx={{
+                            top: 0,
+                            left: 0,
+                            bottom: 0,
+                            right: 0,
+                            position: 'absolute',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}>
+                            <Typography variant="caption" component="div" sx={{
+                                color: "white",
+                                fontSize: "large"
+                            }}>
+                                {`${showProgress(todoProgress)}%`}
+                            </Typography>
+
+                        </Box>
+                    </Box>
                 </div>
 
 
             </div>
 
             <div className={`${styles.todoCard}`}>
-                <span>{text}</span>
+                <span className={`${styles.span}`}>{name}</span>
             </div>
 
             <div className={`${styles.todoCard}`}>
                 <div className={`${styles.elementsContainer}`}>
                     <form>
 
-                        <input placeholder="Enter todo element name"
+                        <input className={`${styles.input}`}
+                            placeholder="Enter todo element name"
                             value={elementName}
                             onChange={(e) => setElementName(e.target.value)} type="text" />
 
-                        <button type="button" onClick={(e) => saveNewTodoElementHandler(e)}>Submit</button>
+                        <button className={`${styles.elementButton}`} type="button" onClick={(e) => saveNewTodoElementHandler(e)}>Submit</button>
                     </form>
                     <label>Check list:</label>
 
@@ -127,7 +189,9 @@ function TodoDetails() {
             </div>
 
             <div className={`${styles.todoCard}`}>
-                <span>{description}</span>
+                {
+                    TodoDescription(todoProgress)
+                }
             </div>
 
             <div className={`${styles.todoCard}`}>

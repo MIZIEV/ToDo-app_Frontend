@@ -15,14 +15,24 @@ function TodoElementComponent(props) {
 
         changeCompleteStatus(todoElement.id).then((responce) => {
             console.log(responce.data);
+            window.location.reload();
+            //todo: it is a temporary solution (window.location.reload()) must be removed
+
         }).catch(error => console.error(error));
     }
 
     return (
         <div>
             <FormGroup>
-                <FormControlLabel control={<Checkbox checked={checked}
-                    onChange={changeStatusHandler} />} label={todoElement.elementName} />
+                <FormControlLabel control={<Checkbox
+                    sx={{
+                        color: "white",
+                        '&.Mui-checked': {
+                            color: "#fe8804"
+                        }
+                    }
+                    } checked={checked}
+                    onChange={(e) => changeStatusHandler(e)} />} label={todoElement.elementName} />
             </FormGroup>
         </div>
     )
