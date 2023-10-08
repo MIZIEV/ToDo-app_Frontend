@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { loginApiCall, saveLoggedInUser, storeToken } from "../../services/AuthService";
 import { useNavigate } from "react-router-dom";
 import styles from "../../styles/Login.module.css";
+import sound from "../../sounds/main_buttons_sound.mp3";
 
 function LoginComponent() {
 
@@ -12,8 +13,10 @@ function LoginComponent() {
 
     async function handleLoginForm(e) {
         e.preventDefault();
+
         const loginObj = [username, password];
         console.log(loginObj);
+        playSound();
 
         await loginApiCall(username, password).then((responce) => {
             console.log(responce.data)
@@ -28,9 +31,11 @@ function LoginComponent() {
             navigator(`/todos/${username}`)
             window.location.reload(false);
         }).catch(error => console.error(error));
-
     }
 
+    function playSound() {
+        new Audio(sound).play();
+    }
 
     return (
         <div className={`${styles.divConatiner}`}>
@@ -66,7 +71,7 @@ function LoginComponent() {
                 </div>
 
                 <div>
-                    <button className={`${styles.button}`} type="button" onClick={(e) => handleLoginForm(e)}>Login</button>
+                    <button className={`${styles.button}`} type="button" onClick={(e) => { handleLoginForm(e) }}>Login</button>
                 </div>
             </form>
         </div>

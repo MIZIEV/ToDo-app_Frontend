@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../../styles/Footer.module.css";
 import { BsGithub, BsInstagram, BsLinkedin } from "react-icons/bs";
-import { FaSquareFacebook } from "react-icons/fa6";
+import { ImFacebook2 } from "react-icons/im";
 import { NavLink } from "react-router-dom";
 
 const LINK_TO_LINKEDIN = "https://www.linkedin.com/in/oleksandr-miziev-312835209/";
@@ -32,7 +32,7 @@ function FooterComponent() {
 
                     <div className={`${styles.iconContainer}`}>
                         <NavLink to={LINK_TO_FACEBOOK}>
-                            <FaSquareFacebook className={`${styles.icon}`} />
+                            <ImFacebook2 className={`${styles.icon}`} />
                         </NavLink>
                     </div>
 

@@ -4,6 +4,7 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { changeCompleteStatus } from "../../services/TodoElementService";
+import sound from "../../sounds/check_box_sound.mp3";
 
 function TodoElementComponent(props) {
 
@@ -11,6 +12,7 @@ function TodoElementComponent(props) {
     const [checked, setChecked] = useState(todoElement.completed);
 
     function changeStatusHandler(event) {
+        playSound();
         setChecked(event.target.checked);
 
         changeCompleteStatus(todoElement.id).then((responce) => {
@@ -19,6 +21,10 @@ function TodoElementComponent(props) {
             //todo: it is a temporary solution (window.location.reload()) must be removed
 
         }).catch(error => console.error(error));
+    }
+
+    function playSound() {
+        new Audio(sound).play();
     }
 
     return (
