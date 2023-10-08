@@ -6,11 +6,12 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import LoginComponent from './components/auth/LoginComponent';
 import RegisterComponent from './components/auth/RegisterComponent';
-import HeaderComponent from './components/UI/HeaderComponent';
-import FooterComponent from './components/UI/FooterComponent';
+import HeaderComponent from './components/other_components/HeaderComponent';
+import FooterComponent from './components/other_components/FooterComponent';
 import { isUserLoggedIn } from './services/AuthService';
 import TodoDetails from './components/Todos/TodoDetails';
 import ArchiveListComponent from './components/Todos/ArchiveListComponent';
+import ProfileComponent from './components/other_components/ProfileComponent';
 
 function App() {
 
@@ -40,7 +41,7 @@ function App() {
               <TodoList />
             </AuthenticateRoute>
           } />
-          
+
           <Route path='/todos-completed/:username' element={
             <AuthenticateRoute>
               <ArchiveListComponent />
@@ -53,7 +54,11 @@ function App() {
             </AuthenticateRoute>
           } />
 
-
+          <Route path='/profile/:username' element={
+            <AuthenticateRoute>
+              <ProfileComponent />
+            </AuthenticateRoute>
+          } />
 
           <Route path='/todo-details/:todoUniqueKey' element={
             <AuthenticateRoute>

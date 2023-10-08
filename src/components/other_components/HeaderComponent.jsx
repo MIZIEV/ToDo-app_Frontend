@@ -23,11 +23,15 @@ function HeaderComponent() {
     }
 
     function registrationHandler() {
-        navigator("/register")
+        navigator("/register");
     }
 
     function todoListHandler() {
-        navigator(`/todos/${username}`)
+        navigator(`/todos/${username}`);
+    }
+
+    function profileHandler() {
+        navigator(`/profile/${username}`);
     }
 
     return (
@@ -64,7 +68,12 @@ function HeaderComponent() {
                     isAuth &&
                     <div className={`${styles.divright}`}>
                         <NavLink className={`${styles.navlinklogout}`} to="/login" onClick={handleLogout}>Logout</NavLink>
+
+                        <div className={`${styles.divNavLink}`}>
+                            <button className={`${styles.button}`} onClick={() => profileHandler()}>Profile</button>
+                        </div>
                     </div>
+
                 }
             </div>
         </header>

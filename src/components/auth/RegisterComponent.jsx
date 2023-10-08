@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { registerApiCall, saveLoggedInUser } from "../../services/AuthService";
 import styles from "../../styles/Register.module.css";
 import { useNavigate } from "react-router-dom";
+import sound from "../../sounds/main_buttons_sound.mp3";
 
 function RegisterComponent() {
 
@@ -18,6 +19,8 @@ function RegisterComponent() {
 
         const register = { name, username, email, password };
 
+        playSound();
+
         registerApiCall(register).then((responce) => {
             console.log(responce.data);
             navigator(`/todos/${username}`);
@@ -25,6 +28,10 @@ function RegisterComponent() {
             saveLoggedInUser(username, "ROLE_USER");
             window.location.reload(false);
         }).catch(error => console.error(error));
+    }
+
+    function playSound() {
+        new Audio(sound).play();
     }
 
     return (
