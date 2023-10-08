@@ -41,10 +41,12 @@
 }
 
 .navlinksignin:hover {
+    transition: all .4s ease;
     color: #fe8804;
 }
 
 .navlinklogout:hover {
+    transition: all .4s ease;
     color: #fe8804;
 }
 
@@ -58,6 +60,7 @@
 }
 
 .button:hover {
+    transition: all .4s ease;
     background-color: #fe8804;
     color: white;
 }
@@ -73,5 +76,6 @@
 }
 
 .buttonNewTodo:hover {
+    transition: all .4s ease;
     color: #fe8804;
 }

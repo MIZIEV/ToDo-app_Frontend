@@ -33,6 +33,7 @@
 }
 
 .icon:hover {
+    transition: all .4s ease;
     color: #fe8804;
 }
 
