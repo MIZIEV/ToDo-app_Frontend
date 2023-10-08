@@ -146,7 +146,7 @@ function TodoDetails() {
                                 color: "white",
                                 fontSize: "large"
                             }}>
-                                {`${showProgress(todoProgress)}%`}
+                                {`${~~showProgress(todoProgress)}%`}
                             </Typography>
 
                         </Box>
