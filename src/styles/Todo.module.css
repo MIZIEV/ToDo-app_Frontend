@@ -12,6 +12,7 @@
 }
 
 .todo:hover {
+    transition: all .4s ease;
     box-shadow: 10px 5px 5px #1B1464
 }
 
@@ -36,6 +37,7 @@
 }
 
 .detailButton:hover {
+    transition: all .4s ease;
     border-color: white;
 }
 

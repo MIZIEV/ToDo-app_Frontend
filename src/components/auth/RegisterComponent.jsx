@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { registerApiCall } from "../../services/AuthService";
+import { registerApiCall, saveLoggedInUser } from "../../services/AuthService";
 import styles from "../../styles/Register.module.css";
 import { useNavigate } from "react-router-dom";
 
@@ -17,9 +17,13 @@ function RegisterComponent() {
         e.preventDefault();
 
         const register = { name, username, email, password };
+
         registerApiCall(register).then((responce) => {
             console.log(responce.data);
-            navigator(`/todos/${username}`)            
+            navigator(`/todos/${username}`);
+
+            saveLoggedInUser(username, "ROLE_USER");
+            window.location.reload(false);
         }).catch(error => console.error(error));
     }
 

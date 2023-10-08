@@ -37,6 +37,7 @@
 }
 
 .button:hover {
+    transition: all .4s ease;
     border-color: white;
 }
 
