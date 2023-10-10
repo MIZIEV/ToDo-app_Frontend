@@ -28,11 +28,18 @@
     padding-bottom: 30px;
 }
 
+.textBlock {
+    overflow: hidden;
+    border-bottom: 1px solid;
+}
+
 .titleSpan {
+    display: block;
     float: left;
 }
 
 .textSpan {
+    display: block;
     float: right;
 }
 
