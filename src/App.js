@@ -12,6 +12,7 @@ import { isUserLoggedIn } from './services/AuthService';
 import TodoDetails from './components/Todos/TodoDetails';
 import ArchiveListComponent from './components/Todos/ArchiveListComponent';
 import ProfileComponent from './components/other_components/ProfileComponent';
+import EditProfileComponent from './components/other_components/EditProfileComponent';
 
 function App() {
 
@@ -57,6 +58,12 @@ function App() {
           <Route path='/profile/:username' element={
             <AuthenticateRoute>
               <ProfileComponent />
+            </AuthenticateRoute>
+          } />
+
+          <Route path='/profile/update/:username' element={
+            <AuthenticateRoute>
+              <EditProfileComponent />
             </AuthenticateRoute>
           } />
 
