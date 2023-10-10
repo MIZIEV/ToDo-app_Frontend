@@ -1,7 +1,5 @@
 .divConatiner {
-    padding: 10px;
     height: 80%;
-    margin: 5px auto;
     display: flex;
     justify-content: center;
 }
