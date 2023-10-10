@@ -1,11 +1,9 @@
-import React, { useState } from "react";
-
-import { registerApiCall, saveLoggedInUser, storeToken } from "../../services/AuthService";
-import styles from "../../styles/Register.module.css";
+import Resct, { useEffect, useState } from "react";
+import styles from "../../styles/EditProfile.module.css"
+import { getUser, updateUser } from "../../services/UserService";
 import { useNavigate } from "react-router-dom";
-import sound from "../../sounds/main_buttons_sound.mp3";
 
-function RegisterComponent() {
+function EditProfileComponent() {
 
     const [name, setName] = useState('');
     const [username, setUsername] = useState('');
@@ -14,24 +12,31 @@ function RegisterComponent() {
 
     const navigator = useNavigate();
 
-    function handleRegistrationForm(e) {
-        e.preventDefault();
+    function editProfileHandler(event) {
+        event.preventDefault();
+        const usernameForUpdating = sessionStorage.getItem("authenticatedUser");
+        const user = { name, username, email, password };
 
-        const register = { name, username, email, password };
-
-        playSound();
-
-        registerApiCall(register).then((responce) => {
-            console.log(responce.data);
-            navigator("/login");
-            saveLoggedInUser(username, "ROLE_USER");
-
+        updateUser(usernameForUpdating, user).then((response) => {
+            console.log(response.data);
         }).catch(error => console.error(error));
+
+        sessionStorage.clear();
+        navigator("/login");
     }
 
-    function playSound() {
-        new Audio(sound).play();
-    }
+    useEffect(() => {
+        const username = sessionStorage.getItem("authenticatedUser");
+
+        getUser(username).then((response) => {
+            setName(response.data.name);
+            setUsername(response.data.username);
+            setEmail(response.data.email);
+            setPassword(response.data.password);
+        });
+
+    }, [])
+
 
     return (
         <div className={`${styles.divConatiner}`}>
@@ -103,7 +108,7 @@ function RegisterComponent() {
                 </div>
 
                 <div>
-                    <button className={`${styles.button}`} type="button" onClick={(e) => handleRegistrationForm(e)}>Register</button>
+                    <button className={`${styles.button}`} type="button" onClick={(e) => editProfileHandler(e)}>Edit</button>
                 </div>
 
             </form>
@@ -111,4 +116,4 @@ function RegisterComponent() {
     )
 }
 
-export default RegisterComponent;
+export default EditProfileComponent;

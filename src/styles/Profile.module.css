@@ -35,3 +35,37 @@
 .textSpan {
     float: right;
 }
+
+.editButton {
+    font-size: large;
+    margin-right: 5px;
+    height: 60px;
+    width: 140px;
+    border-radius: 10px;
+    color: white;
+    background-color: #1289A7;
+}
+
+.editButton:hover {
+    transition: all .4s ease;
+    border-color: white;
+}
+
+.deleteButton {
+    font-size: large;
+    margin-left: 5px;
+    height: 60px;
+    width: 140px;
+    border-radius: 10px;
+    color: white;
+    background-color: #ED4C67;
+}
+
+.deleteButton:hover {
+    transition: all .4s ease;
+    border-color: white;
+}
+
+.buttonsContainer {
+    margin: 10px auto;
+}

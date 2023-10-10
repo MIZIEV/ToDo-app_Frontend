@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import styles from "../../styles/Profile.module.css";
-import { getUser } from "../../services/UserService";
+import { deleteUser, getUser } from "../../services/UserService";
 import { FaUserAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 function ProfileComponent() {
 
     const [name, setName] = useState("");
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
+
+    const navigator = useNavigate();
 
     useEffect(() => {
         getCurrentUser();
@@ -22,6 +25,18 @@ function ProfileComponent() {
             setUsername(responce.data.username);
             setEmail(responce.data.email);
         }).catch(error => console.error(error));
+    }
+
+    function deleteUserHandler(event) {
+        event.preventDefault();
+        deleteUser(username);
+        sessionStorage.clear();
+        navigator("/login");
+    }
+
+    function editUserrHandler(event) {
+        event.preventDefault();
+        navigator(`/profile/update/${username}`);
     }
 
     return (
@@ -49,6 +64,11 @@ function ProfileComponent() {
                         <span className={`${styles.titleSpan}`}>Email: </span>
                         <span >{email}</span>
                         <hr />
+                    </div>
+
+                    <div className={`${styles.buttonsContainer}`}>
+                        <button className={`${styles.editButton}`} onClick={(e) => editUserrHandler(e)}>Edit prifile</button>
+                        <button className={`${styles.deleteButton}`} onClick={(e) => deleteUserHandler(e)}>Delete profile</button>
                     </div>
 
                 </div>
