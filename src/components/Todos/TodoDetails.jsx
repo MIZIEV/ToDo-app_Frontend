@@ -86,12 +86,20 @@ function TodoDetails() {
     function saveNewTodoElementHandler(event) {
         event.preventDefault();
 
-        const todoElement = { elementName, elementComleted };
+        //const todoElement = { elementName, elementComleted };
 
-        saveNewTodoElement(todoUniqueKey, todoElement).then((responce) => {
-            console.log(responce.data)
+
+        console.log("===========array size - " + elementList)
+        saveNewTodoElement(todoUniqueKey, { elementName, elementComleted }).then((responce) => {
+            console.log(responce.data);
+            setElementList([...elementList, { elementName, elementComleted }]);
+            console.log("===========array size - " + elementList)
+
+            setElementName("");
         }).catch(error => console.error(error));
-        window.location.reload();
+        // window.location.reload();
+
+
     }
 
     function TodoDescription(todoProgress) {
@@ -162,20 +170,20 @@ function TodoDetails() {
 
             <div className={`${styles.todoCard}`}>
                 <div className={`${styles.elementsContainer}`}>
-                    <form>
+                    <form onSubmit={(e) => saveNewTodoElementHandler(e)}>
 
                         <input className={`${styles.input}`}
                             placeholder="Enter todo element name"
                             value={elementName}
                             onChange={(e) => setElementName(e.target.value)} type="text" />
 
-                        <button className={`${styles.elementButton}`} type="button" onClick={(e) => saveNewTodoElementHandler(e)}>Submit</button>
+                        <button className={`${styles.elementButton}`} type="submit">Submit</button>
                     </form>
                     <label>Check list:</label>
 
                     <div className={`${styles.elementsBox}`}>
                         {
-                            elementList.map((todoElement) => <TodoElementComponent key={todoElement.id} todoElement={todoElement} />)
+                            elementList.map((todoElement, id) => <TodoElementComponent key={id} todoElement={todoElement} />)
                         }
                     </div>
 
