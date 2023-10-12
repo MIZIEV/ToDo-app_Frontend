@@ -79,3 +79,12 @@
     transition: all .4s ease;
     color: #fe8804;
 }
+
+.mobileIcon {
+    margin: auto 15px;
+    height: 100%;
+}
+
+.mobileIcon:active {
+    color: #fe8804;
+}
