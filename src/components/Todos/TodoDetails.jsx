@@ -24,7 +24,6 @@ function TodoDetails() {
 
     const [elementName, setElementName] = useState("");
     const [elementComleted, setElementCompleted] = useState(false);
-
     const [elementList, setElementList] = useState([]);
     const [todoProgress, setTodoProgress] = useState(0);
 
@@ -160,8 +159,6 @@ function TodoDetails() {
                         </Box>
                     </Box>
                 </div>
-
-
             </div>
 
             <div className={`${styles.todoCard}`}>
@@ -183,7 +180,7 @@ function TodoDetails() {
 
                     <div className={`${styles.elementsBox}`}>
                         {
-                            elementList.map((todoElement, id) => <TodoElementComponent key={id} todoElement={todoElement} />)
+                            elementList.map((todoElement) => <TodoElementComponent key={todoElement.id} todoElement={todoElement} />)
                         }
                     </div>
 
