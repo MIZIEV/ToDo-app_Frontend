@@ -5,6 +5,18 @@
     grid-template-rows: 50% 50%;
 }
 
+@media (max-width: 600px) {
+
+    .container {
+        height: 80%;
+        display: block;
+    }
+
+    .todoCard {
+        height: 60%;
+    }
+}
+
 .todoCard {
     margin: 10px;
     padding: 10px;
