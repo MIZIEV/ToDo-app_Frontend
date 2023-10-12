@@ -38,3 +38,12 @@
     transition: all .4s ease;
     border-color: white;
 }
+
+.button:disabled {
+    background-color: #ffaf40;
+}
+
+.erroMessage {
+    font-size: medium;
+    color: #fc5c65;
+}

@@ -26,6 +26,7 @@
 }
 
 .button {
+    margin-top: 10px;
     font-size: large;
     height: 60px;
     width: 140px;
@@ -41,4 +42,14 @@
 
 .form {
     justify-content: center;
+}
+
+
+.button:disabled {
+    background-color: #ffaf40;
+}
+
+.erroMessage {
+    font-size: medium;
+    color: #fc5c65;
 }

@@ -57,12 +57,6 @@ function RegisterComponent() {
                         <label className={`${styles.label}`}>Name</label>
                     </div>
 
-                    <div>
-                        {
-                            errors?.name && <label style={{ color: "red" }}>{errors?.name?.message || "Error"}</label>
-                        }
-                    </div>
-
                     <input
                         {...register("name", {
                             required: "Field musn't be empty!!!",
@@ -80,16 +74,16 @@ function RegisterComponent() {
                     ></input>
                 </div>
 
+                <div>
+                    {
+                        errors?.name && <label className={styles.erroMessage}>{errors?.name?.message || "Error"}</label>
+                    }
+                </div>
+
                 <div className={`${styles.divFields}`}>
 
                     <div>
                         <label className={`${styles.label}`}>Username</label>
-                    </div>
-
-                    <div>
-                        {
-                            errors?.username && <label style={{ color: "red" }}>{errors?.username?.message || "Error"}</label>
-                        }
                     </div>
 
                     <input
@@ -111,17 +105,19 @@ function RegisterComponent() {
                     ></input>
                 </div>
 
+                <div>
+                    {
+                        errors?.username && <label className={styles.erroMessage}>{errors?.username?.message || "Error"}</label>
+                    }
+                </div>
+
                 <div className={`${styles.divFields}`}>
 
                     <div>
                         <label className={`${styles.label}`}>Email</label>
                     </div>
 
-                    <div>
-                        {
-                            errors?.email && <label style={{ color: "red" }}>{errors?.email?.message || "Error"}</label>
-                        }
-                    </div>
+
 
                     <input
 
@@ -141,6 +137,11 @@ function RegisterComponent() {
                         onChange={(e) => { setEmail(e.target.value) }}
                     ></input>
                 </div>
+                <div>
+                    {
+                        errors?.email && <label className={styles.erroMessage}>{errors?.email?.message || "Error"}</label>
+                    }
+                </div>
 
                 <div className={`${styles.divFields}`}>
 
@@ -148,11 +149,7 @@ function RegisterComponent() {
                         <label className={`${styles.label}`}>Password</label>
                     </div>
 
-                    <div>
-                        {
-                            errors?.password && <label style={{ color: "red" }}>{errors?.password?.message || "Error"}</label>
-                        }
-                    </div>
+
 
                     <input
                         {...register("password", {
@@ -170,6 +167,11 @@ function RegisterComponent() {
                         value={password}
                         onChange={(e) => { setPassword(e.target.value) }}
                     ></input>
+                    <div>
+                        {
+                            errors?.password && <label className={styles.erroMessage}>{errors?.password?.message || "Error"}</label>
+                        }
+                    </div>
                 </div>
 
                 <div>
