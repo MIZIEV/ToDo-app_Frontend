@@ -48,22 +48,19 @@ function ProfileComponent() {
                         <FaUserAlt className={`${styles.icon}`} />
                     </div>
 
-                    <div >
+                    <div className={`${styles.textBlock}`}>
                         <span className={`${styles.titleSpan}`}>Username: </span>
-                        <span >{username}</span>
-                        <hr />
+                        <span className={`${styles.textSpan}`}>{username}</span>
                     </div>
 
-                    <div >
+                    <div className={`${styles.textBlock}`}>
                         <span className={`${styles.titleSpan}`}>Name: </span>
-                        <span >{name}</span>
-                        <hr />
+                        <span className={`${styles.textSpan}`}>{name}</span>
                     </div>
 
-                    <div >
+                    <div className={`${styles.textBlock}`}>
                         <span className={`${styles.titleSpan}`}>Email: </span>
-                        <span >{email}</span>
-                        <hr />
+                        <span className={`${styles.textSpan}`}>{email}</span>
                     </div>
 
                     <div className={`${styles.buttonsContainer}`}>
