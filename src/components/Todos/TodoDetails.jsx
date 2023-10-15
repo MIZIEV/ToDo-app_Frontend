@@ -61,7 +61,7 @@ function TodoDetails() {
             setTodoProgress(progressResult(responce.data));
         }).catch(error => console.error(error));
 
-    }, []);
+    }, [elementList.length]);
 
     function editHandler(todoUniqueKey) {
         navigator(`/update-todo/${todoUniqueKey}`)
