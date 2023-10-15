@@ -23,8 +23,8 @@ function LoginComponent() {
 
     const navigator = useNavigate();
 
-    async function handleLoginForm(e) {
-        e.preventDefault();
+    async function handleLoginForm() {
+        //e.preventDefault();
 
         const loginObj = [username, password];
         console.log(loginObj);
@@ -95,8 +95,8 @@ function LoginComponent() {
                         {...register("password", {
                             required: "Field musn't be empty!!!",
                             minLength: {
-                                value: 5,
-                                message: "Password musn't be less 5 characters!!!"
+                                value: 4,
+                                message: "Password musn't be less 4 characters!!!"
                             }
                         })}
                         className={`${styles.input}`}
