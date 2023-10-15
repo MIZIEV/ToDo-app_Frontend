@@ -22,7 +22,7 @@ function ArchiveListComponent() {
 
     return (
         <div className={styles.todoListContainer}>
-            {/*todos.length === 0 && <h3>Todo list is empty.</h3>*/}
+            {todos.length === 0 && <h3>Archive is empty.</h3>}
             {todos.map((todo) => <TodoComponent key={todo.todoUniqueKey} todo={todo} />)}
         </div>
     )

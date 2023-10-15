@@ -12,39 +12,39 @@ const LINK_TO_GITHUB = "https://github.com/MIZIEV";
 function FooterComponent() {
 
     return (
-        <footer className={`${styles.footer}`}>
+        <footer className={styles.footer}>
 
-            <div className={`${styles.maindiv}`}>
+            <div className={styles.maindiv}>
 
-                <div className={`${styles.divleft}`}>
+                <div className={styles.divleft}>
                     <div>
                         <h3>@2023 created by Olexandr Miziev</h3>
                     </div>
                 </div>
 
-                <div className={`${styles.divright}`}>
+                <div className={styles.divright}>
 
-                    <div className={`${styles.iconContainer}`}>
+                    <div className={styles.iconContainer}>
                         <NavLink to={LINK_TO_LINKEDIN}>
-                            <BsLinkedin className={`${styles.icon}`} />
+                            <BsLinkedin className={styles.icon} />
                         </NavLink>
                     </div>
 
-                    <div className={`${styles.iconContainer}`}>
+                    <div className={styles.iconContainer}>
                         <NavLink to={LINK_TO_FACEBOOK}>
-                            <ImFacebook2 className={`${styles.icon}`} />
+                            <ImFacebook2 className={styles.icon} />
                         </NavLink>
                     </div>
 
-                    <div className={`${styles.iconContainer}`}>
+                    <div className={styles.iconContainer}>
                         <NavLink to={LINK_TO_INSTAGRAM}>
-                            <BsInstagram className={`${styles.icon}`} />
+                            <BsInstagram className={styles.icon} />
                         </NavLink>
                     </div>
 
-                    <div className={`${styles.iconContainer}`}>
+                    <div className={styles.iconContainer}>
                         <NavLink to={LINK_TO_GITHUB}>
-                            <BsGithub className={`${styles.icon}`} />
+                            <BsGithub className={styles.icon} />
                         </NavLink>
                     </div>
 

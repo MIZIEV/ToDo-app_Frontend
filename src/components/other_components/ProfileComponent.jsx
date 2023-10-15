@@ -40,32 +40,32 @@ function ProfileComponent() {
     }
 
     return (
-        <div className={`${styles.mainContainer}`}>
-            <div className={`${styles.profileCard}`}>
-                <div className={`${styles.cardContent}`}>
+        <div className={styles.mainContainer}>
+            <div className={styles.profileCard}>
+                <div className={styles.cardContent}>
 
-                    <div className={`${styles.icon}`}>
-                        <FaUserAlt className={`${styles.icon}`} />
+                    <div className={styles.icon}>
+                        <FaUserAlt className={styles.icon} />
                     </div>
 
-                    <div className={`${styles.textBlock}`}>
-                        <span className={`${styles.titleSpan}`}>Username: </span>
-                        <span className={`${styles.textSpan}`}>{username}</span>
+                    <div className={styles.textBlock}>
+                        <span className={styles.titleSpan}>Username: </span>
+                        <span className={styles.textSpan}>{username}</span>
                     </div>
 
-                    <div className={`${styles.textBlock}`}>
-                        <span className={`${styles.titleSpan}`}>Name: </span>
-                        <span className={`${styles.textSpan}`}>{name}</span>
+                    <div className={styles.textBlock}>
+                        <span className={styles.titleSpan}>Name: </span>
+                        <span className={styles.textSpan}>{name}</span>
                     </div>
 
-                    <div className={`${styles.textBlock}`}>
-                        <span className={`${styles.titleSpan}`}>Email: </span>
-                        <span className={`${styles.textSpan}`}>{email}</span>
+                    <div className={styles.textBlock}>
+                        <span className={styles.titleSpan}>Email: </span>
+                        <span className={styles.textSpan}>{email}</span>
                     </div>
 
-                    <div className={`${styles.buttonsContainer}`}>
-                        <button className={`${styles.editButton}`} onClick={(e) => editUserrHandler(e)}>Edit prifile</button>
-                        <button className={`${styles.deleteButton}`} onClick={(e) => deleteUserHandler(e)}>Delete profile</button>
+                    <div className={styles.buttonsContainer}>
+                        <button className={styles.editButton} onClick={(e) => editUserrHandler(e)}>Edit prifile</button>
+                        <button className={styles.deleteButton} onClick={(e) => deleteUserHandler(e)}>Delete profile</button>
                     </div>
 
                 </div>

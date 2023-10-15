@@ -24,10 +24,8 @@ function LoginComponent() {
     const navigator = useNavigate();
 
     async function handleLoginForm() {
-        //e.preventDefault();
 
         const loginObj = [username, password];
-        console.log(loginObj);
         playSound();
 
         await loginApiCall(username, password).then((responce) => {
@@ -50,14 +48,14 @@ function LoginComponent() {
     }
 
     return (
-        <div className={`${styles.divConatiner}`}>
+        <div className={styles.divConatiner}>
 
-            <form className={`${styles.form}`} onSubmit={handleSubmit(() => handleLoginForm())} >
+            <form className={styles.form} onSubmit={handleSubmit(() => handleLoginForm())} >
 
-                <div className={`${styles.divFields}`}>
+                <div className={styles.divFields}>
 
                     <div>
-                        <label className={`${styles.label}`}>Username</label>
+                        <label className={styles.label}>Username</label>
                     </div>
 
                     <input
@@ -69,7 +67,7 @@ function LoginComponent() {
                                 message: "Username musn't be less 5 characters!!!"
                             }
                         })}
-                        className={`${styles.input}`}
+                        className={styles.input}
                         type="text"
                         name="username"
                         placeholder="Enter your username"
@@ -84,10 +82,10 @@ function LoginComponent() {
                     }
                 </div>
 
-                <div className={`${styles.divFields}`}>
+                <div className={styles.divFields}>
 
                     <div>
-                        <label className={`${styles.label}`}>Password</label>
+                        <label className={styles.label}>Password</label>
                     </div>
 
                     <input
@@ -99,7 +97,7 @@ function LoginComponent() {
                                 message: "Password musn't be less 4 characters!!!"
                             }
                         })}
-                        className={`${styles.input}`}
+                        className={styles.input}
                         type="password"
                         name="password"
                         placeholder="Enter your password"
@@ -115,7 +113,7 @@ function LoginComponent() {
                 </div>
 
                 <div>
-                    <button className={`${styles.button}`} type="submit" disabled={!isValid} >Login</button>
+                    <button className={styles.button} type="submit" disabled={!isValid} >Login</button>
                 </div>
             </form>
         </div >

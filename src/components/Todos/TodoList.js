@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 
 function TodoList() {
 
-    //const { todos, deleteTodo, toggleTodo } = props
     const [todos, setTodos] = useState([]);
 
     useEffect(() => {
@@ -14,7 +13,6 @@ function TodoList() {
 
 
     function listTodos() {
-        console.log("get all todo func")
         getAllTodos().then((responce) => {
             console.log(responce.data);
             setTodos(responce.data);
@@ -24,7 +22,7 @@ function TodoList() {
 
     return (
         <div className={styles.todoListContainer}>
-            {/*todos.length === 0 && <h3>Todo list is empty.</h3>*/}
+            {todos.length === 0 && <h3>Todo list is empty.</h3>}
             {todos.map((todo) => <TodoComponent key={todo.todoUniqueKey} todo={todo} />)}
         </div>
     )
