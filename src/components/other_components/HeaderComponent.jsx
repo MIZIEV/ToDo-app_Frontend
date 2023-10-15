@@ -56,7 +56,7 @@ function HeaderComponent() {
                 <div>
                     <button className={`${styles.buttonNewTodo}`} onClick={todoListHandler}>Todo list</button>
                     <button className={`${styles.buttonNewTodo}`} onClick={addNewTodo}>Add new todo</button>
-                    <button button className={`${styles.buttonNewTodo}`} onClick={archiveHandler}>Archive</button>
+                    <button className={`${styles.buttonNewTodo}`} onClick={archiveHandler}>Archive</button>
                 </div>
             )
         } else {

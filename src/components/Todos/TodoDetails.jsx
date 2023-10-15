@@ -59,7 +59,6 @@ function TodoDetails() {
             console.log(elementList)
 
             setTodoProgress(progressResult(responce.data));
-
         }).catch(error => console.error(error));
 
     }, []);
@@ -101,12 +100,12 @@ function TodoDetails() {
 
     }
 
-    function TodoDescription(todoProgress) {
+    function todoDescription(todoProgress) {
         if (todoProgress === 100) {
 
             return (
                 <div className={`${styles.completedContainer}`}>
-                    <span lassName={`${styles.span}`}>Do you want completed todo?</span>
+                    <span >Do you want completed todo?</span>
                     <div>
                         <button className={`${styles.completedButton}`} onClick={() => changeStatusHandler(todoUniqueKey)}>Completed</button>
                     </div>
@@ -180,7 +179,9 @@ function TodoDetails() {
 
                     <div className={`${styles.elementsBox}`}>
                         {
-                            elementList.map((todoElement) => <TodoElementComponent key={todoElement.id} todoElement={todoElement} />)
+                            elementList.map((todoElement) => <TodoElementComponent
+                                key={todoElement.id}
+                                todoElement={todoElement} />)
                         }
                     </div>
 
@@ -195,7 +196,7 @@ function TodoDetails() {
 
             <div className={`${styles.todoCard}`}>
                 {
-                    TodoDescription(todoProgress)
+                    todoDescription(todoProgress)
                 }
             </div>
 

@@ -17,7 +17,8 @@ function TodoElementComponent(props) {
 
         changeCompleteStatus(todoElement.id).then((responce) => {
             console.log(responce.data);
-            window.location.reload();
+
+             window.location.reload();
             //todo: it is a temporary solution (window.location.reload()) must be removed
 
         }).catch(error => console.error(error));
@@ -36,8 +37,8 @@ function TodoElementComponent(props) {
                         '&.Mui-checked': {
                             color: "#fe8804"
                         }
-                    }
-                    } checked={checked}
+                    }}
+                    checked={checked}
                     onChange={(e) => changeStatusHandler(e)} />} label={todoElement.elementName} />
             </FormGroup>
         </div>

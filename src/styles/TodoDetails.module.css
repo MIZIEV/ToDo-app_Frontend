@@ -8,12 +8,11 @@
 @media (max-width: 600px) {
 
     .container {
-        height: 80%;
         display: block;
     }
 
     .todoCard {
-        height: 60%;
+        height: 40%;
     }
 }
 
