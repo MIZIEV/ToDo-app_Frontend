@@ -13,6 +13,8 @@ function RegisterComponent() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const navigator = useNavigate();
+
     const {
         register,
         formState: {
@@ -25,10 +27,8 @@ function RegisterComponent() {
     });
 
 
-    const navigator = useNavigate();
 
     function handleRegistrationForm() {
-        // e.preventDefault();
 
         const register = { name, username, email, password };
 
@@ -37,7 +37,6 @@ function RegisterComponent() {
         registerApiCall(register).then((responce) => {
             console.log(responce.data);
             navigator("/login");
-            //saveLoggedInUser(username, "ROLE_USER");
 
         }).catch(error => console.error(error));
     }
@@ -47,14 +46,14 @@ function RegisterComponent() {
     }
 
     return (
-        <div className={`${styles.divConatiner}`}>
+        <div className={styles.divConatiner}>
 
-            <form onSubmit={handleSubmit(() => handleRegistrationForm())} className={`${styles.form}`}>
+            <form onSubmit={handleSubmit(() => handleRegistrationForm())} className={styles.form}>
 
-                <div className={`${styles.divFields}`}>
+                <div className={styles.divFields}>
 
                     <div>
-                        <label className={`${styles.label}`}>Name</label>
+                        <label className={styles.label}>Name</label>
                     </div>
 
                     <input
@@ -65,7 +64,7 @@ function RegisterComponent() {
                                 message: "Name musn't be less 5 characters!!!"
                             }
                         })}
-                        className={`${styles.input}`}
+                        className={styles.input}
                         type="text"
                         name="name"
                         placeholder="Enter your name"
@@ -80,10 +79,10 @@ function RegisterComponent() {
                     }
                 </div>
 
-                <div className={`${styles.divFields}`}>
+                <div className={styles.divFields}>
 
                     <div>
-                        <label className={`${styles.label}`}>Username</label>
+                        <label className={styles.label}>Username</label>
                     </div>
 
                     <input
@@ -96,7 +95,7 @@ function RegisterComponent() {
                             }
                         })}
 
-                        className={`${styles.input}`}
+                        className={styles.input}
                         type="text"
                         name="username"
                         placeholder="Enter your username"
@@ -111,10 +110,10 @@ function RegisterComponent() {
                     }
                 </div>
 
-                <div className={`${styles.divFields}`}>
+                <div className={styles.divFields}>
 
                     <div>
-                        <label className={`${styles.label}`}>Email</label>
+                        <label className={styles.label}>Email</label>
                     </div>
 
 
@@ -129,7 +128,7 @@ function RegisterComponent() {
                             }
                         })}
                         required
-                        className={`${styles.input}`}
+                        className={styles.input}
                         type="text"
                         name="email"
                         placeholder="Enter your email"
@@ -143,10 +142,10 @@ function RegisterComponent() {
                     }
                 </div>
 
-                <div className={`${styles.divFields}`}>
+                <div className={styles.divFields}>
 
                     <div>
-                        <label className={`${styles.label}`}>Password</label>
+                        <label className={styles.label}>Password</label>
                     </div>
 
 
@@ -160,7 +159,7 @@ function RegisterComponent() {
                             }
                         })}
 
-                        className={`${styles.input}`}
+                        className={styles.input}
                         type="password"
                         name="password"
                         placeholder="Enter your password"
@@ -175,7 +174,7 @@ function RegisterComponent() {
                 </div>
 
                 <div>
-                    <button className={`${styles.button}`} type="submit" disabled={!isValid}>Register</button>
+                    <button className={styles.button} type="submit" disabled={!isValid}>Register</button>
                 </div>
 
             </form>

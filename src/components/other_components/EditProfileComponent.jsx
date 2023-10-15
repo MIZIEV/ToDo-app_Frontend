@@ -39,18 +39,18 @@ function EditProfileComponent() {
 
 
     return (
-        <div className={`${styles.divConatiner}`}>
+        <div className={styles.divConatiner}>
 
-            <form className={`${styles.form}`}>
+            <form className={styles.form}>
 
-                <div className={`${styles.divFields}`}>
+                <div className={styles.divFields}>
 
                     <div>
-                        <label className={`${styles.label}`}>Name</label>
+                        <label className={styles.label}>Name</label>
                     </div>
 
                     <input
-                        className={`${styles.input}`}
+                        className={styles.input}
                         type="text"
                         name="name"
                         placeholder="Enter your name"
@@ -59,14 +59,14 @@ function EditProfileComponent() {
                     ></input>
                 </div>
 
-                <div className={`${styles.divFields}`}>
+                <div className={styles.divFields}>
 
                     <div>
-                        <label className={`${styles.label}`}>Username</label>
+                        <label className={styles.label}>Username</label>
                     </div>
 
                     <input
-                        className={`${styles.input}`}
+                        className={styles.input}
                         type="text"
                         name="username"
                         placeholder="Enter your username"
@@ -75,14 +75,14 @@ function EditProfileComponent() {
                     ></input>
                 </div>
 
-                <div className={`${styles.divFields}`}>
+                <div className={styles.divFields}>
 
                     <div>
-                        <label className={`${styles.label}`}>Email</label>
+                        <label className={styles.label}>Email</label>
                     </div>
 
                     <input
-                        className={`${styles.input}`}
+                        className={styles.input}
                         type="text"
                         name="email"
                         placeholder="Enter your email"
@@ -91,14 +91,14 @@ function EditProfileComponent() {
                     ></input>
                 </div>
 
-                <div className={`${styles.divFields}`}>
+                <div className={styles.divFields}>
 
                     <div>
-                        <label className={`${styles.label}`}>Password</label>
+                        <label className={styles.label}>Password</label>
                     </div>
 
                     <input
-                        className={`${styles.input}`}
+                        className={styles.input}
                         type="password"
                         name="password"
                         placeholder="Enter your password"
@@ -108,7 +108,7 @@ function EditProfileComponent() {
                 </div>
 
                 <div>
-                    <button className={`${styles.button}`} type="button" onClick={(e) => editProfileHandler(e)}>Edit</button>
+                    <button className={styles.button} type="button" onClick={(e) => editProfileHandler(e)}>Edit</button>
                 </div>
 
             </form>
