@@ -54,8 +54,8 @@ function HeaderComponent() {
             return (
 
                 <div>
-                    <button className={`${styles.buttonNewTodo}`} onClick={todoListHandler}>Todo list</button>
-                    <button className={`${styles.buttonNewTodo}`} onClick={addNewTodo}>Add new todo</button>
+                    <button className={`${styles.buttonNewTodo}`} onClick={todoListHandler}>Task list</button>
+                    <button className={`${styles.buttonNewTodo}`} onClick={addNewTodo}>Add new task</button>
                     <button className={`${styles.buttonNewTodo}`} onClick={archiveHandler}>Archive</button>
                 </div>
             )
@@ -77,7 +77,7 @@ function HeaderComponent() {
                 <div className={styles.divleft}>
                     {mobileVersion &&
                         <div>
-                            <h3>Todo manager</h3>
+                            <h3>Task manager</h3>
                         </div>
                     }
                     {

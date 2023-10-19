@@ -55,9 +55,9 @@ function TodoForm() {
 
     function pageTitle() {
         if (todoUniqueKey) {
-            return <h1>Update todo</h1>
+            return <h1>Update task</h1>
         } else {
-            return <h1>Save new todo</h1>
+            return <h1>Save new task</h1>
         }
     }
 
@@ -68,11 +68,11 @@ function TodoForm() {
             }
             <form>
                 <div className={styles.inputDiv}>
-                    <input placeholder="Enter new todo" value={name} onChange={(e) => setName(e.target.value)} />
+                    <input placeholder="Enter new task" value={name} onChange={(e) => setName(e.target.value)} />
                 </div>
 
                 <div className={styles.inputDiv}>
-                    <input placeholder="Enter todo description" value={description} onChange={(e) => setDescription(e.target.value)} />
+                    <input placeholder="Enter task description" value={description} onChange={(e) => setDescription(e.target.value)} />
                 </div>
 
                 <div>

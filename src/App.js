@@ -13,6 +13,7 @@ import TodoDetails from './components/Todos/TodoDetails';
 import ArchiveListComponent from './components/Todos/ArchiveListComponent';
 import ProfileComponent from './components/other_components/ProfileComponent';
 import EditProfileComponent from './components/other_components/EditProfileComponent';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
 
@@ -88,6 +89,17 @@ function App() {
         <FooterComponent />
       </BrowserRouter>
 
+      <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored" />
     </div>
   );
 }

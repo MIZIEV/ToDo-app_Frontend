@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 
-import { logout, registerApiCall, saveLoggedInUser, storeToken } from "../../services/AuthService";
-import styles from "../../styles/Register.module.css";
+import { registerApiCall } from "../../services/AuthService";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import sound from "../../sounds/main_buttons_sound.mp3";
+import styles from "../../styles/Register.module.css";
 
 function RegisterComponent() {
 
@@ -26,8 +28,6 @@ function RegisterComponent() {
         mode: "onBlur"
     });
 
-
-
     function handleRegistrationForm() {
 
         const register = { name, username, email, password };
@@ -36,6 +36,17 @@ function RegisterComponent() {
 
         registerApiCall(register).then((responce) => {
             console.log(responce.data);
+
+            toast.success('User registered successfully!!!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
             navigator("/login");
 
         }).catch(error => console.error(error));
@@ -64,6 +75,7 @@ function RegisterComponent() {
                                 message: "Name musn't be less 5 characters!!!"
                             }
                         })}
+
                         className={styles.input}
                         type="text"
                         name="name"
@@ -116,8 +128,6 @@ function RegisterComponent() {
                         <label className={styles.label}>Email</label>
                     </div>
 
-
-
                     <input
 
                         {...register("email", {
@@ -127,6 +137,7 @@ function RegisterComponent() {
                                 message: "Invalid email address"
                             }
                         })}
+
                         required
                         className={styles.input}
                         type="text"
@@ -147,8 +158,6 @@ function RegisterComponent() {
                     <div>
                         <label className={styles.label}>Password</label>
                     </div>
-
-
 
                     <input
                         {...register("password", {

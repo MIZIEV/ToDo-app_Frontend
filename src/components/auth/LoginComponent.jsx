@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import styles from "../../styles/Login.module.css";
 import sound from "../../sounds/main_buttons_sound.mp3";
 import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function LoginComponent() {
 
@@ -40,7 +42,20 @@ function LoginComponent() {
 
             navigator(`/todos/${username}`)
             window.location.reload(false);
-        }).catch(error => console.error(error));
+        }).catch(error => {
+            console.error(error);
+            
+            toast.error("Username or password incorect, try again!!!", {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+        });
     }
 
     function playSound() {
@@ -116,6 +131,16 @@ function LoginComponent() {
                     <button className={styles.button} type="submit" disabled={!isValid} >Login</button>
                 </div>
             </form>
+            <ToastContainer position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored" />
         </div >
     )
 }
