@@ -1,7 +1,8 @@
-import Resct, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../../styles/EditProfile.module.css"
 import { getUser, updateUser } from "../../services/UserService";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function EditProfileComponent() {
 
@@ -19,6 +20,18 @@ function EditProfileComponent() {
 
         updateUser(usernameForUpdating, user).then((response) => {
             console.log(response.data);
+
+            toast.success('Data updated successfully!!!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+
         }).catch(error => console.error(error));
 
         sessionStorage.clear();
@@ -32,7 +45,6 @@ function EditProfileComponent() {
             setName(response.data.name);
             setUsername(response.data.username);
             setEmail(response.data.email);
-            setPassword(response.data.password);
         });
 
     }, [])

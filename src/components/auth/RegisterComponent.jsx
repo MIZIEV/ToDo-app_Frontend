@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { registerApiCall } from "../../services/AuthService";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import sound from "../../sounds/main_buttons_sound.mp3";
 import styles from "../../styles/Register.module.css";
