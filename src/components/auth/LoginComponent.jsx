@@ -26,7 +26,7 @@ function LoginComponent() {
     const navigator = useNavigate();
 
     async function handleLoginForm() {
-
+        localStorage.clear();
         const loginObj = [username, password];
         playSound();
 
@@ -44,7 +44,7 @@ function LoginComponent() {
             window.location.reload(false);
         }).catch(error => {
             console.error(error);
-            
+
             toast.error("Username or password incorect, try again!!!", {
                 position: "top-center",
                 autoClose: 5000,

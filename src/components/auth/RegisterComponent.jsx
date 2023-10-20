@@ -29,7 +29,7 @@ function RegisterComponent() {
     });
 
     function handleRegistrationForm() {
-
+        localStorage.clear();
         const register = { name, username, email, password };
 
         playSound();
