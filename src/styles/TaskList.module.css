@@ -1,4 +1,4 @@
-.todoListContainer {
+.taskListContainer {
     height: 80%;
     padding: 10px;
     place-items: center;
@@ -7,7 +7,7 @@
 
 @media (max-width: 600px) {
 
-    .todoListContainer{
+    .taskListContainer{
         height: auto;
     }
 }

@@ -1,5 +1,5 @@
 import Task from "./Task";
-import styles from '../../styles/TodoList.module.css'
+import styles from '../../styles/TaskList.module.css'
 import { getAllTasks } from "../../services/TaskService";
 import { useEffect, useState } from "react";
 
@@ -21,9 +21,9 @@ function TaskList() {
 
 
     return (
-        <div className={styles.todoListContainer}>
+        <div className={styles.taskListContainer}>
             {tasks.length === 0 && <h3>Task list is empty.</h3>}
-            {tasks.map((task) => <Task key={task.todoUniqueKey} task={task} />)}
+            {tasks.map((task) => <Task key={task.taskUniqueKey} task={task} />)}
         </div>
     )
 }

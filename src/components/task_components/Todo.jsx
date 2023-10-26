@@ -6,7 +6,7 @@ import Checkbox from '@mui/material/Checkbox';
 import { changeCompleteStatus, deleteTodo } from "../../services/TodoService";
 import sound from "../../sounds/check_box_sound.mp3";
 import { BsXSquareFill } from "react-icons/bs";
-import styles from "../../styles/Element.module.css";
+import styles from "../../styles/Todo.module.css";
 
 
 function Todo(props) {

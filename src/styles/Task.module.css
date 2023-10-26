@@ -1,0 +1,46 @@
+.task {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    margin: 15px auto;
+    font-size: 1.5rem;
+    border-radius: 15px;
+    border: 2px solid #1B1464;
+    color: white;
+    background-color: #1f2295;
+    width: 75%;
+}
+
+.task:hover {
+    transition: all .4s ease;
+    box-shadow: 10px 5px 5px #1B1464
+}
+
+.taskText {
+    width: 100%;
+    text-align: left;
+}
+
+.completedTask {
+    background-color: unset;
+    border-color: gray;
+    color: gray;
+}
+
+.detailButton {
+    font-size: medium;
+    height: 30px;
+    width: 70px;
+    border-radius: 10px;
+    color: white;
+    background-color: #fe8804;
+}
+
+.detailButton:hover {
+    transition: all .4s ease;
+    border-color: white;
+}
+
+.completedDiv{
+    color: #55efc4;
+}

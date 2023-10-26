@@ -1,4 +1,4 @@
-import styles from '../../styles/Todo.module.css';
+import styles from '../../styles/Task.module.css';
 import { useNavigate } from 'react-router-dom';
 
 function Task(props) {
@@ -23,7 +23,7 @@ function Task(props) {
 
         <div className={styles.task} >
 
-            <div className={styles.todoText}>{task.name}</div>
+            <div className={styles.taskText}>{task.name}</div>
             {
                 completedOrNot(task)
             }

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from 'react';
 import { getTaskByKey, saveTask, updateTaskd } from '../../services/TaskService';
-import styles from '../../styles/TodoForm.module.css';
+import styles from '../../styles/TaskForm.module.css';
 import { useNavigate, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -11,28 +11,28 @@ function TaskForm() {
     const [description, setDescription] = useState("");
     const [username, setUsername] = useState("");
     const navigator = useNavigate();
-    const { TaskUniqueKey } = useParams();
+    const { taskUniqueKey } = useParams();
 
     function saveOrUpdateTask(event) {
         event.preventDefault();
 
         const username = sessionStorage.getItem("authenticatedUser");
-        const Task = { name, description, TaskUniqueKey: uuidv4(), username };
+        const task = { name, description, taskUniqueKey: uuidv4(), username };
 
         setUsername(username);
         setName('');
 
-        if (TaskUniqueKey) {
+        if (taskUniqueKey) {
 
-            updateTaskd(TaskUniqueKey, Task).then((responce) => {
+            updateTaskd(taskUniqueKey, task).then((responce) => {
 
-                console.log(Task)
+                console.log(task)
                 console.log(responce.data);
                 navigator(`/tasks/${username}`);
 
             }).catch(error => console.error(error));
         } else {
-            saveTask(Task).then((responce) => {
+            saveTask(task).then((responce) => {
 
                 console.log(responce.data)
                 navigator(`/tasks/${username}`)
@@ -42,8 +42,8 @@ function TaskForm() {
     }
 
     useEffect(() => {
-        if (TaskUniqueKey) {
-            getTaskByKey(TaskUniqueKey).then((responce) => {
+        if (taskUniqueKey) {
+            getTaskByKey(taskUniqueKey).then((responce) => {
 
                 console.log(responce)
                 setName(responce.data.name);
@@ -54,7 +54,7 @@ function TaskForm() {
     }, [])
 
     function pageTitle() {
-        if (TaskUniqueKey) {
+        if (taskUniqueKey) {
             return <h1>Update task</h1>
         } else {
             return <h1>Save new task</h1>
@@ -62,7 +62,7 @@ function TaskForm() {
     }
 
     return (
-        <div className={styles.TodoFormContainer}>
+        <div className={styles.taskFormContainer}>
             {
                 pageTitle()
             }

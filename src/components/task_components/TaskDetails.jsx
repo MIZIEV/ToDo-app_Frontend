@@ -10,7 +10,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-import styles from "../../styles/TodoDetails.module.css";
+import styles from "../../styles/TaskDetails.module.css";
 import { getAllTodos, saveNewTodo } from "../../services/TodoService";
 
 function TaskDetails() {
@@ -126,7 +126,7 @@ function TaskDetails() {
     return (
         <div className={styles.container}>
 
-            <div className={styles.todoCard}>
+            <div className={styles.taskCard}>
 
                 <label>Complete status </label>
                 <div className={styles.progressContainer}>
@@ -156,24 +156,24 @@ function TaskDetails() {
                 </div>
             </div>
 
-            <div className={styles.todoCard}>
+            <div className={styles.taskCard}>
                 <span className={styles.span}>{name}</span>
             </div>
 
-            <div className={styles.todoCard}>
-                <div className={styles.elementsContainer}>
+            <div className={styles.taskCard}>
+                <div className={styles.todoContainer}>
                     <form onSubmit={(e) => saveNewTodoHandler(e)}>
 
                         <input className={styles.input}
-                            placeholder="Enter todo element name"
+                            placeholder="Enter todo name"
                             value={todoName}
                             onChange={(e) => setTodoName(e.target.value)} type="text" />
 
-                        <button className={styles.elementButton} type="submit">Submit</button>
+                        <button className={styles.todoButton} type="submit">Submit</button>
                     </form>
-                    <label>Check list:</label>
+                    <label>Todo list:</label>
 
-                    <div className={styles.elementsBox}>
+                    <div className={styles.todoBox}>
                         {
                             todoList.map((todo, index) => <Todo
                                 onChange={testFunction}
@@ -188,19 +188,19 @@ function TaskDetails() {
                 </div>
             </div>
 
-            <div className={styles.todoCard}>
+            <div className={styles.taskCard}>
                 <button className={styles.button} onClick={() => editHandler(taskUniqueKey)}>
                     <BiSolidEdit className={styles.iconEdit} />
                 </button>
             </div>
 
-            <div className={styles.todoCard}>
+            <div className={styles.taskCard}>
                 {
                     taskDescription(taskProgress)
                 }
             </div>
 
-            <div className={styles.todoCard}>
+            <div className={styles.taskCard}>
                 <button className={styles.button} onClick={() => deleteHandler(taskUniqueKey)}>
                     <AiFillDelete className={styles.iconDelete} />
                 </button>
