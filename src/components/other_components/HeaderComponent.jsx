@@ -17,11 +17,11 @@ function HeaderComponent() {
     const mobileVersion = mobileVersionFunc();
 
     function addNewTodo() {
-        navigator(`/add-todo/`);
+        navigator(`/add-task/`);
     }
 
     function archiveHandler() {
-        navigator(`/todos-completed/${username}`);
+        navigator(`/tasks-completed/${username}`);
     }
 
     function handleLogout() {
@@ -34,7 +34,7 @@ function HeaderComponent() {
     }
 
     function todoListHandler() {
-        navigator(`/todos/${username}`);
+        navigator(`/tasks/${username}`);
     }
 
     function profileHandler() {

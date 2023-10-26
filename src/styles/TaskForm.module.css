@@ -1,15 +1,15 @@
-.todoFormContainer {
+.taskFormContainer {
     margin-bottom: 30px;
     height: 80%;
 }
 
-.todoFormContainer form {
+.taskFormContainer form {
     display: block;
     align-items: center;
     justify-content: center;
 }
 
-.todoFormContainer input {
+.taskFormContainer input {
     width: 45%;
     height: 30px;
     font-size: 1.3rem;

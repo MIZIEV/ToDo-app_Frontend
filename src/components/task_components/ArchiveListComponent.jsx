@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import TodoComponent from "./TodoComponent";
-import { getAllCompletedTodo } from "../../services/TodoService";
+import Task from "./Task";
+import { getAllCompletedTask } from "../../services/TaskService";
 import styles from '../../styles/ArchiveList.module.css';
 
 function ArchiveListComponent() {
-    const [todos, setTodos] = useState([]);
+    const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
         listTodos();
@@ -13,17 +13,17 @@ function ArchiveListComponent() {
 
     function listTodos() {
         console.log("get all todo func")
-        getAllCompletedTodo().then((responce) => {
+        getAllCompletedTask().then((responce) => {
             console.log(responce.data);
-            setTodos(responce.data);
+            setTasks(responce.data);
         }).catch(error => console.error(error));
     }
 
 
     return (
         <div className={styles.todoListContainer}>
-            {todos.length === 0 && <h3>Archive is empty.</h3>}
-            {todos.map((todo) => <TodoComponent key={todo.todoUniqueKey} todo={todo} />)}
+            {tasks.length === 0 && <h3>Archive is empty.</h3>}
+            {tasks.map((task) => <Task key={task.todoUniqueKey} task={task} />)}
         </div>
     )
 }
