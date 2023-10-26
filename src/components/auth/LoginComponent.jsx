@@ -40,7 +40,7 @@ function LoginComponent() {
 
             saveLoggedInUser(username, role);
 
-            navigator(`/todos/${username}`)
+            navigator(`/tasks/${username}`)
             window.location.reload(false);
         }).catch(error => {
             console.error(error);

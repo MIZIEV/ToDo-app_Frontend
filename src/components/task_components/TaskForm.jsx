@@ -1,49 +1,49 @@
 import React, { useEffect } from "react";
 import { useState } from 'react';
-import { getTodoByKey, saveTodo, updateTodod } from '../../services/TodoService';
+import { getTaskByKey, saveTask, updateTaskd } from '../../services/TaskService';
 import styles from '../../styles/TodoForm.module.css';
 import { useNavigate, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 
-function TodoForm() {
+function TaskForm() {
 
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [username, setUsername] = useState("");
     const navigator = useNavigate();
-    const { todoUniqueKey } = useParams();
+    const { TaskUniqueKey } = useParams();
 
-    function saveOrUpdateTodo(event) {
+    function saveOrUpdateTask(event) {
         event.preventDefault();
 
         const username = sessionStorage.getItem("authenticatedUser");
-        const todo = { name, description, todoUniqueKey: uuidv4(), username };
+        const Task = { name, description, TaskUniqueKey: uuidv4(), username };
 
         setUsername(username);
         setName('');
 
-        if (todoUniqueKey) {
+        if (TaskUniqueKey) {
 
-            updateTodod(todoUniqueKey, todo).then((responce) => {
+            updateTaskd(TaskUniqueKey, Task).then((responce) => {
 
-                console.log(todo)
+                console.log(Task)
                 console.log(responce.data);
-                navigator(`/todos/${username}`);
+                navigator(`/tasks/${username}`);
 
             }).catch(error => console.error(error));
         } else {
-            saveTodo(todo).then((responce) => {
+            saveTask(Task).then((responce) => {
 
                 console.log(responce.data)
-                navigator(`/todos/${username}`)
+                navigator(`/tasks/${username}`)
 
             }).catch(error => { console.error(error) });
         }
     }
 
     useEffect(() => {
-        if (todoUniqueKey) {
-            getTodoByKey(todoUniqueKey).then((responce) => {
+        if (TaskUniqueKey) {
+            getTaskByKey(TaskUniqueKey).then((responce) => {
 
                 console.log(responce)
                 setName(responce.data.name);
@@ -54,7 +54,7 @@ function TodoForm() {
     }, [])
 
     function pageTitle() {
-        if (todoUniqueKey) {
+        if (TaskUniqueKey) {
             return <h1>Update task</h1>
         } else {
             return <h1>Save new task</h1>
@@ -62,7 +62,7 @@ function TodoForm() {
     }
 
     return (
-        <div className={styles.todoFormContainer}>
+        <div className={styles.TodoFormContainer}>
             {
                 pageTitle()
             }
@@ -76,11 +76,11 @@ function TodoForm() {
                 </div>
 
                 <div>
-                    <button className={styles.button} type="button" onClick={(e) => saveOrUpdateTodo(e)}>Submit</button>
+                    <button className={styles.button} type="button" onClick={(e) => saveOrUpdateTask(e)}>Submit</button>
                 </div>
             </form>
         </div>
     )
 }
 
-export default TodoForm;
+export default TaskForm;

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { changeTodoCompleteStatus, deleteTodo, getTodoByKey } from "../../services/TodoService";
-import TodoElementComponent from "./TodoElementComponent";
+import { changeTaskCompleteStatus, deleteTask, getTaskByKey } from "../../services/TaskService";
+import Todo from "./Todo";
 
 import { BiSolidEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
@@ -11,26 +11,26 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 import styles from "../../styles/TodoDetails.module.css";
-import { getAllElements, saveNewTodoElement } from "../../services/TodoElementService";
+import { getAllTodos, saveNewTodo } from "../../services/TodoService";
 
-function TodoDetails() {
+function TaskDetails() {
 
-    const { todoUniqueKey } = useParams();
+    const { taskUniqueKey } = useParams();
     const navigator = useNavigate();
     const username = sessionStorage.getItem("authenticatedUser");
     const [name, setName] = useState("");
     const [completed, setCompleted] = useState(false);
     const [description, setDescription] = useState("")
 
-    const [elementName, setElementName] = useState("");
-    const [elementComleted, setElementCompleted] = useState(false);
-    const [elementList, setElementList] = useState([]);
-    const [todoProgress, setTodoProgress] = useState(0);
+    const [todoName, setTodoName] = useState("");
+    const [todoComleted, setTodoCompleted] = useState(false);
+    const [todoList, setTodoList] = useState([]);
+    const [taskProgress, setTaskProgress] = useState(0);
 
-    function progressResult(elementList) {
-        const onePercent = 100 / elementList.length;
+    function progressResult(todoList) {
+        const onePercent = 100 / todoList.length;
 
-        let progress = elementList.filter((todoElement) => todoElement.completed === true);
+        let progress = todoList.filter((todo) => todo.completed === true);
 
         let result = onePercent * progress.length;
 
@@ -38,64 +38,64 @@ function TodoDetails() {
     }
 
     useEffect(() => {
-        getTodoByKey(todoUniqueKey).then((responce) => {
+        getTaskByKey(taskUniqueKey).then((response) => {
 
-            console.log(responce.data)
-            setName(responce.data.name);
-            setCompleted(responce.data.completed);
-            setDescription(responce.data.description);
+            console.log(response.data)
+            setName(response.data.name);
+            setCompleted(response.data.completed);
+            setDescription(response.data.description);
 
         }).catch(error => console.error(error));
 
     }, []);
 
     useEffect(() => {
-        getAllElements(todoUniqueKey).then((responce) => {
+        getAllTodos(taskUniqueKey).then((response) => {
 
-            setElementList(responce.data);
-            console.log(responce.data);
+            setTodoList(response.data);
+            console.log(response.data);
 
-            setTodoProgress(progressResult(responce.data));
+            setTaskProgress(progressResult(response.data));
         }).catch(error => console.error(error));
 
-    }, [elementList.length]);
+    }, [todoList.length]);
 
-    function editHandler(todoUniqueKey) {
-        navigator(`/update-todo/${todoUniqueKey}`)
+    function editHandler(taskUniqueKey) {
+        navigator(`/update-task/${taskUniqueKey}`)
     }
 
-    function deleteHandler(todoUniqueKey) {
-        deleteTodo(todoUniqueKey).then((responce) => {
-            console.log(responce.data);
-            navigator(`/todos/${username}`)
-        }).catch(error => console.error(error));
-    }
-
-    function changeStatusHandler(todoUniqueKey) {
-        changeTodoCompleteStatus(todoUniqueKey).then((responce) => {
-            console.log(responce.data);
-            navigator(`/todos/${username}`)
+    function deleteHandler(taskUniqueKey) {
+        deleteTask(taskUniqueKey).then((response) => {
+            console.log(response.data);
+            navigator(`/tasks/${username}`)
         }).catch(error => console.error(error));
     }
 
-    function saveNewTodoElementHandler(event) {
+    function changeStatusHandler(taskUniqueKey) {
+        changeTaskCompleteStatus(taskUniqueKey).then((response) => {
+            console.log(response.data);
+            navigator(`/Tasks/${username}`)
+        }).catch(error => console.error(error));
+    }
+
+    function saveNewTodoHandler(event) {
         event.preventDefault();
 
-        saveNewTodoElement(todoUniqueKey, { elementName, elementComleted }).then((response) => {
+        saveNewTodo(taskUniqueKey, { todoName, todoComleted }).then((response) => {
             console.log(response.data);
-            setElementList([...elementList, { elementName, elementComleted }]);
-            setElementName("");
+            setTodoList([...todoList, { todoName, todoComleted }]);
+            setTodoName("");
         }).catch(error => console.error(error));
     }
 
-    function todoDescription(todoProgress) {
-        if (todoProgress === 100) {
+    function taskDescription(taskProgress) {
+        if (taskProgress === 100) {
 
             return (
                 <div className={styles.completedContainer}>
-                    <span >Do you want completed todo?</span>
+                    <span >Do you want completed task?</span>
                     <div>
-                        <button className={styles.completedButton} onClick={() => changeStatusHandler(todoUniqueKey)}>Completed</button>
+                        <button className={styles.completedButton} onClick={() => changeStatusHandler(taskUniqueKey)}>Completed</button>
                     </div>
                 </div>)
         } else {
@@ -103,15 +103,24 @@ function TodoDetails() {
         }
     }
 
-    function showProgress(todoProgress) {
-        if (isNaN(todoProgress)) {
+    function showProgress(taskProgress) {
+        if (isNaN(taskProgress)) {
             return 0
         }
-        else if (todoProgress == undefined) {
+        else if (taskProgress == undefined) {
             return 0
         } else {
-            return todoProgress;
+            return taskProgress;
         }
+    }
+
+    function testFunction() {
+        getAllTodos(taskUniqueKey).then((response) => {
+
+            setTodoList(response.data);
+            setTaskProgress(progressResult(response.data));
+
+        }).catch(error => console.error(error))
     }
 
     return (
@@ -123,7 +132,7 @@ function TodoDetails() {
                 <div className={styles.progressContainer}>
                     <Box sx={{ position: 'relative', display: 'inline-flex' }}>
 
-                        <CircularProgress size="120px" sx={{ color: "#fe8804" }} variant="determinate" value={todoProgress} />
+                        <CircularProgress size="120px" sx={{ color: "#fe8804" }} variant="determinate" value={taskProgress} />
 
                         <Box sx={{
                             top: 0,
@@ -139,7 +148,7 @@ function TodoDetails() {
                                 color: "white",
                                 fontSize: "large"
                             }}>
-                                {`${~~showProgress(todoProgress)}%`}
+                                {`${~~showProgress(taskProgress)}%`}
                             </Typography>
 
                         </Box>
@@ -153,12 +162,12 @@ function TodoDetails() {
 
             <div className={styles.todoCard}>
                 <div className={styles.elementsContainer}>
-                    <form onSubmit={(e) => saveNewTodoElementHandler(e)}>
+                    <form onSubmit={(e) => saveNewTodoHandler(e)}>
 
                         <input className={styles.input}
                             placeholder="Enter todo element name"
-                            value={elementName}
-                            onChange={(e) => setElementName(e.target.value)} type="text" />
+                            value={todoName}
+                            onChange={(e) => setTodoName(e.target.value)} type="text" />
 
                         <button className={styles.elementButton} type="submit">Submit</button>
                     </form>
@@ -166,9 +175,13 @@ function TodoDetails() {
 
                     <div className={styles.elementsBox}>
                         {
-                            elementList.map((todoElement) => <TodoElementComponent
-                                key={todoElement.id}
-                                todoElement={todoElement} />)
+                            todoList.map((todo, index) => <Todo
+                                onChange={testFunction}
+                                todoIndex={index}
+                                todoList={todoList}
+
+                                key={todo.id}
+                                todo={todo} />)
                         }
                     </div>
 
@@ -176,19 +189,19 @@ function TodoDetails() {
             </div>
 
             <div className={styles.todoCard}>
-                <button className={styles.button} onClick={() => editHandler(todoUniqueKey)}>
+                <button className={styles.button} onClick={() => editHandler(taskUniqueKey)}>
                     <BiSolidEdit className={styles.iconEdit} />
                 </button>
             </div>
 
             <div className={styles.todoCard}>
                 {
-                    todoDescription(todoProgress)
+                    taskDescription(taskProgress)
                 }
             </div>
 
             <div className={styles.todoCard}>
-                <button className={styles.button} onClick={() => deleteHandler(todoUniqueKey)}>
+                <button className={styles.button} onClick={() => deleteHandler(taskUniqueKey)}>
                     <AiFillDelete className={styles.iconDelete} />
                 </button>
             </div>
@@ -197,4 +210,4 @@ function TodoDetails() {
     )
 }
 
-export default TodoDetails;
+export default TaskDetails;

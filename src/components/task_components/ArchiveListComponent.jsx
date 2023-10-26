@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import TodoComponent from "./TodoComponent";
-import { getAllCompletedTodo } from "../../services/TodoService";
+import TodoComponent from "./Task";
+import { getAllCompletedTask } from "../../services/TaskService";
 import styles from '../../styles/ArchiveList.module.css';
 
 function ArchiveListComponent() {
@@ -13,7 +13,7 @@ function ArchiveListComponent() {
 
     function listTodos() {
         console.log("get all todo func")
-        getAllCompletedTodo().then((responce) => {
+        getAllCompletedTask().then((responce) => {
             console.log(responce.data);
             setTodos(responce.data);
         }).catch(error => console.error(error));

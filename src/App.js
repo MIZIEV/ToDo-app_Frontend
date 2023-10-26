@@ -1,5 +1,5 @@
-import TodoList from './components/Todos/TodoList';
-import TodoForm from './components/Todos/TodoForm';
+import TaskList from './components/task_components/TaskList';
+import TaskForm from './components/task_components/TaskForm';
 
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
@@ -9,8 +9,8 @@ import RegisterComponent from './components/auth/RegisterComponent';
 import HeaderComponent from './components/other_components/HeaderComponent';
 import FooterComponent from './components/other_components/FooterComponent';
 import { isUserLoggedIn } from './services/AuthService';
-import TodoDetails from './components/Todos/TodoDetails';
-import ArchiveListComponent from './components/Todos/ArchiveListComponent';
+import TaskDetails from './components/task_components/TaskDetails';
+import ArchiveListComponent from './components/task_components/ArchiveListComponent';
 import ProfileComponent from './components/other_components/ProfileComponent';
 import EditProfileComponent from './components/other_components/EditProfileComponent';
 import { ToastContainer } from 'react-toastify';
@@ -37,22 +37,21 @@ function App() {
         <Routes>
           <Route path='/' element={<LoginComponent />} />
 
-
-          <Route path='/todos/:username' element={
+          <Route path='/tasks/:username' element={
             <AuthenticateRoute>
-              <TodoList />
+              <TaskList />
             </AuthenticateRoute>
           } />
 
-          <Route path='/todos-completed/:username' element={
+          <Route path='/tasks-completed/:username' element={
             <AuthenticateRoute>
               <ArchiveListComponent />
             </AuthenticateRoute>
           } />
 
-          <Route path='/add-todo/' element={
+          <Route path='/add-task/' element={
             <AuthenticateRoute>
-              <TodoForm />
+              <TaskForm />
             </AuthenticateRoute>
           } />
 
@@ -68,16 +67,16 @@ function App() {
             </AuthenticateRoute>
           } />
 
-          <Route path='/todo-details/:todoUniqueKey' element={
+          <Route path='/task-details/:taskUniqueKey' element={
             <AuthenticateRoute>
-              <TodoDetails />
+              <TaskDetails />
             </AuthenticateRoute>
           } />
 
 
-          <Route path='/update-todo/:todoUniqueKey' element={
+          <Route path='/update-task/:taskUniqueKey' element={
             <AuthenticateRoute>
-              <TodoForm />
+              <TaskForm />
             </AuthenticateRoute>
           } />
 
