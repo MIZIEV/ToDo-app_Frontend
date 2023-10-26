@@ -1,0 +1,14 @@
+.deleteIcon {
+    color: white;
+    vertical-align: middle;
+    font-size: large;
+    padding: 9px;
+}
+
+.deleteIcon:hover {
+    color: #fc5c65;
+}
+.deleteButton{
+    background-color: transparent;
+    border-color: transparent;
+}
