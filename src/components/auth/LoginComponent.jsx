@@ -41,7 +41,6 @@ function LoginComponent() {
             saveLoggedInUser(username, role);
 
             navigator(`/tasks/${username}`)
-            window.location.reload(false);
         }).catch(error => {
             console.error(error);
 

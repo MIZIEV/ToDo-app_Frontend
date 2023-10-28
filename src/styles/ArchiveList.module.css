@@ -1,5 +1,12 @@
 .todoListContainer {
     height: 80%;
-    padding: 10px;
     place-items: center;
+    overflow-y: scroll;
+}
+
+@media (max-width: 600px) {
+
+    .taskListContainer{
+        height: auto;
+    }
 }

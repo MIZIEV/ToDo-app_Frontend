@@ -1,5 +1,4 @@
 .taskFormContainer {
-    margin-bottom: 30px;
     height: 80%;
 }
 
@@ -35,4 +34,8 @@
 
 .inputDiv {
     margin: 10px auto;
+}
+
+.h1 {
+    padding-top: 24px;
 }

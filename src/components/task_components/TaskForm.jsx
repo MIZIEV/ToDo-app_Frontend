@@ -55,9 +55,9 @@ function TaskForm() {
 
     function pageTitle() {
         if (taskUniqueKey) {
-            return <h1>Update task</h1>
+            return <h1 className={styles.h1}>Update task</h1>
         } else {
-            return <h1>Save new task</h1>
+            return <h1 className={styles.h1}>Save new task</h1>
         }
     }
 

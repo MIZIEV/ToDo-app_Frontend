@@ -1,6 +1,5 @@
 .taskListContainer {
     height: 80%;
-    padding: 10px;
     place-items: center;
     overflow-y: scroll;
 }
