@@ -114,7 +114,7 @@ function TaskDetails() {
         }
     }
 
-    function testFunction() {
+    function reloadAllDataHandler() {
         getAllTodos(taskUniqueKey).then((response) => {
 
             setTodoList(response.data);
@@ -176,7 +176,7 @@ function TaskDetails() {
                     <div className={styles.todoBox}>
                         {
                             todoList.map((todo, index) => <Todo
-                                onChange={testFunction}
+                                onChange={reloadAllDataHandler}
                                 todoIndex={index}
                                 todoList={todoList}
 
