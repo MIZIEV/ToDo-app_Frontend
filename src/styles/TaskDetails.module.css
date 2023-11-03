@@ -8,10 +8,12 @@
 @media (max-width: 600px) {
 
     .container {
+        overflow-y: scroll;
+
         display: block;
     }
 
-    .todoCard {
+    .taskCard {
         height: 40%;
     }
 }
