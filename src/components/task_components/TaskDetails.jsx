@@ -12,6 +12,7 @@ import Box from '@mui/material/Box';
 
 import styles from "../../styles/TaskDetails.module.css";
 import { getAllTodos, saveNewTodo } from "../../services/TodoService";
+import { useForm } from "react-hook-form";
 
 function TaskDetails() {
 
@@ -26,6 +27,17 @@ function TaskDetails() {
     const [todoComleted, setTodoCompleted] = useState(false);
     const [todoList, setTodoList] = useState([]);
     const [taskProgress, setTaskProgress] = useState(0);
+
+    const {
+        register,
+        formState: {
+            errors,
+            isValid
+        },
+        handleSubmit,
+    } = useForm({
+        mode: "onBlur"
+    });
 
     function progressResult(todoList) {
         const onePercent = 100 / todoList.length;
@@ -163,13 +175,25 @@ function TaskDetails() {
             <div className={styles.taskCard}>
                 <div className={styles.todoContainer}>
                     <form onSubmit={(e) => saveNewTodoHandler(e)}>
-
+                        {
+                            errors?.todoName && <div className={styles.erroMessage}>{errors?.todoName?.message || "Error"}</div>
+                        }
                         <input className={styles.input}
+
+                            {...register("todoName", {
+                                required: "Field musn't be empty!!!",
+                                minLength: {
+                                    value: 4,
+                                    message: "Todo name musn't be less 5 characters!!!"
+                                }
+                            })}
+
                             placeholder="Enter todo name"
                             value={todoName}
                             onChange={(e) => setTodoName(e.target.value)} type="text" />
 
-                        <button className={styles.todoButton} type="submit">Submit</button>
+
+                        <button className={styles.todoButton} type="submit" disabled={!isValid}>Submit</button>
                     </form>
                     <label>Todo list:</label>
 

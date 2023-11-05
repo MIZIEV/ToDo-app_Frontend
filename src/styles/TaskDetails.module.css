@@ -8,10 +8,12 @@
 @media (max-width: 600px) {
 
     .container {
+        overflow-y: scroll;
+
         display: block;
     }
 
-    .todoCard {
+    .taskCard {
         height: 40%;
     }
 }
@@ -132,4 +134,9 @@
 .completedButton:hover {
     transition: all .4s ease;
     border-color: white;
+}
+
+.erroMessage {
+    font-size: medium;
+    color: #fc5c65;
 }
