@@ -135,3 +135,8 @@
     transition: all .4s ease;
     border-color: white;
 }
+
+.erroMessage {
+    font-size: medium;
+    color: #fc5c65;
+}
